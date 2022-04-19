@@ -4,71 +4,21 @@
   padding: 0;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  li, a, button {
-    font-family: 'Lora', serif;
-    font-weight: 500;
-  }
-
-  .navbar-button-custom {
-    margin: 1%;
-  }
-
-  #navbarNav, .logo, .icons {
-    flex: 1 1 0;
-    margin: 0;
-  }
-
-  #navbarNav {
-
-  }
-
-  .logo {
-    display: flex;
-    justify-content: center;
-  }
-
-  .icons {
-    display: flex;
-    justify-content: space-between;
-
-    .socials {
-      justify-content: space-between;
-      margin-left: 20%;
-
-      .fa-brands {
-        margin: 0 10px;
-      }
-    }
-
-    .cart {
-      margin-right: 15%;
-    }
-  }
-
+nav {
   .navbar-brand {
-    display: flex;
-    align-items: center;
     font-family: 'Lora', serif;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 500;
     font-style: italic;
   }
 
-  .navbar-custom {
-    padding: 0;
+  .nav-item .nav-link {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    margin: 0 10px 0 0;
   }
 
-  .nav-links .nav-item {
-    padding: 10px;
+  .socials i {
+    margin: 0 20px 0 0;
   }
-
-}
-
-@media screen and (min-width: 1024px) {
-
 }

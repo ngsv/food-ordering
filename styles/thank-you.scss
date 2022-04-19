@@ -1,0 +1,25 @@
+body {
+
+  .heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 200px;
+    font-family: 'Lora', serif;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 1.3rem;
+      font-weight: 200;
+    }
+  }
+}
+
+.heading {
+
+}

@@ -14,4 +14,33 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
+
+  .imageContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 600px;
+
+    h3 {
+      position: relative;
+      font-family: 'Lora', serif;
+      font-size: 4rem;
+      margin: 200px 50px 0;
+    }
+  }
+
+  .imageContainer::before {
+    content: "";
+    background-image: url("/images/story-image.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.6;
+    width: 100%;
+  }
 }
