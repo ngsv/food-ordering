@@ -1,7 +1,15 @@
--- Drop and recreate Users table (Example)
-
+-- Drop tables
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS orders CASCADE;
+
+-- Recreate tables
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  phone_number VARCHAR(32) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
