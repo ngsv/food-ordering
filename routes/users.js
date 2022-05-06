@@ -12,15 +12,12 @@ module.exports = (db) => {
       FROM users
       WHERE username = $1
     `;
-
     const queryParams = [req.params.id];
 
     db.query(query, queryParams)
       .then(data => {
         const user = data.rows;
         if (user.length === 1) {
-          console.log(req.params.id);
-          console.log(req.session.user_id);
           req.session.user_id = req.params.id;
           res.redirect('/');
         } else {
@@ -29,5 +26,11 @@ module.exports = (db) => {
       })
       .catch(err => console.log(err.message));
   });
+
+  router.get('/logout', (req, res) => {
+    req.session = null;
+    res.redirect('/');
+  });
+
   return router;
 };
