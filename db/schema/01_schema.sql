@@ -19,7 +19,7 @@ CREATE TABLE users (
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   order_time TIMESTAMP,
   expected_pickup_time TIMESTAMP,
   total_amount DECIMAL,
@@ -37,11 +37,11 @@ CREATE TABLE menu_items (
   description TEXT,
   price DECIMAL,
   image_url VARCHAR(255),
-  category_id INTEGER
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 
 CREATE TABLE order_items (
   id SERIAL PRIMARY KEY NOT NULL,
-  order_id INTEGER,
-  menu_item_id INTEGER
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+  menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE
 );

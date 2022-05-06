@@ -5,6 +5,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
+const cookieSession = require('cookie-session');
 const app = express();
 const morgan = require("morgan");
 
@@ -22,6 +23,12 @@ app.use(morgan("dev"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
+
 app.use(
   "/styles",
   sassMiddleware({
@@ -35,12 +42,10 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
 const navigationRoutes = require("./routes/navigation");
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+app.use("/", usersRoutes(db));
 app.use("/", navigationRoutes);
 
 // Home page
