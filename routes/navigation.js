@@ -19,4 +19,8 @@ router.get('/thank-you', (req, res) => {
   res.render('thank-you');
 });
 
+router.get('/menu', (req, res) => {
+  res.render('menu');
+});
+
 module.exports = router;

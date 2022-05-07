@@ -2,8 +2,8 @@
 
 ## User
 
-- POST /users/login/:user_id
-- POST /users/logout
+- POST /login/:user_id
+- POST /logout
 
 ## Navigation
 
