@@ -43,10 +43,12 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 const usersRoutes = require("./routes/users");
 const navigationRoutes = require("./routes/navigation");
+const menuRoutes = require("./routes/menu");
 
 // Mount all resource routes
 app.use("/", usersRoutes(db));
 app.use("/", navigationRoutes);
+app.use("/", menuRoutes(db));
 
 // Home page
 app.get("/", (req, res) => {

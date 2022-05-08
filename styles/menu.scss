@@ -7,13 +7,9 @@ body {
 
     .menu-item-card {
       display: flex;
-      margin: 50px 75px;
+      margin: 15px 75px;
       max-height: 300px;
-      // width: 40vw;
       font-family: 'Lora', serif;
-      // border-style: solid;
-      // border-color: black;
-      // border-width: thin;
 
       p {
         margin: 0;
@@ -31,22 +27,23 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        margin: 0;
+        margin: 10px 15px 7px 0;
         padding: 0;
       }
 
       .title-description {
-        margin: 5px 0 0 0;
+        margin: 0;
 
         h2 {
-          font-size: 1.5rem;
+          font-size: 1.3rem;
         }
       }
 
       .price-and-cart {
         display: flex;
         justify-content: space-between;
-        margin: 0 15px 5px 0;
+        margin: 0;
+        font-size: 0.85rem;
       }
 
     }

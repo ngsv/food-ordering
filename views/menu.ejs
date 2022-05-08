@@ -38,49 +38,29 @@
   <body>
 
     <div class="menu-items-container">
-      <div class="menu-item-card">
-        <div class="">
-          <img src="/images/pad-thai.jpg">
-        </div>
-        <div class="menu-item-details">
-          <div class="title-description">
-            <h2>Pad Thai</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Maecenas a ex sit amet nulla euismod eleifend. Sed eu lectus ut orci fringilla ultrices id sit amet odio.
-              Ut ultricies imperdiet eros, ut suscipit lectus vestibulum sed.
-              Vestibulum viverra varius lectus. Maecenas cursus ligula a euismod commodo.
-            </p>
-          </div>
-          <div class="price-and-cart">
-            <p>$10.00</p>
-            <p>Add</p>
-          </div>
-        </div>
-      </div>
 
-      <div class="menu-item-card">
-        <div class="">
-          <img src="/images/pad-thai.jpg">
-        </div>
-        <div class="menu-item-details">
-          <div class="title-description">
-            <h2>Pad Thai</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Maecenas a ex sit amet nulla euismod eleifend. Sed eu lectus ut orci fringilla ultrices id sit amet odio.
-              Ut ultricies imperdiet eros, ut suscipit lectus vestibulum sed.
-              Vestibulum viverra varius lectus. Maecenas cursus ligula a euismod commodo.
-            </p>
+      <% items.forEach(item => { %>
+        <div class="menu-item-card">
+          <div class="">
+            <img src='<%= item["image_url"] %>'>
           </div>
-          <div class="price-and-cart">
-            <p>$10.00</p>
-            <p>Add</p>
+          <div class="menu-item-details">
+            <div class="title-description">
+              <h2><%= item["item_name"] %></h2>
+              <p>
+                <%= item["description"] %>
+              </p>
+            </div>
+            <div class="price-and-cart">
+              <p>$<%= item["price"]/100 %></p>
+              <p>Add</p>
+            </div>
           </div>
         </div>
-      </div>
+      <% }) %>
 
-      <div class="menu-item-card">
+
+      <!-- <div class="menu-item-card">
         <div class="">
           <img src="/images/pad-thai.jpg">
         </div>
@@ -99,7 +79,28 @@
             <p>Add</p>
           </div>
         </div>
-      </div>
+      </div> -->
+
+      <!-- <div class="menu-item-card">
+        <div class="">
+          <img src="/images/pad-thai.jpg">
+        </div>
+        <div class="menu-item-details">
+          <div class="title-description">
+            <h2>Pad Thai</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Maecenas a ex sit amet nulla euismod eleifend. Sed eu lectus ut orci fringilla ultrices id sit amet odio.
+              Ut ultricies imperdiet eros, ut suscipit lectus vestibulum sed.
+              Vestibulum viverra varius lectus. Maecenas cursus ligula a euismod commodo.
+            </p>
+          </div>
+          <div class="price-and-cart">
+            <p>$10.00</p>
+            <p>Add</p>
+          </div>
+        </div>
+      </div> -->
     </div>
 
     <!-- Bootstrap JS -->

@@ -17,7 +17,7 @@ module.exports = (db) => {
     db.query(query, queryParams)
       .then(data => {
         const user = data.rows;
-        if (user.length === 1) {
+        if (user.length === 1) { // Should return one result if username is found
           req.session.user_id = req.params.id;
           res.redirect('/');
         } else {
@@ -28,7 +28,7 @@ module.exports = (db) => {
   });
 
   router.get('/logout', (req, res) => {
-    req.session = null;
+    req.session = null; // Clears the cookies
     res.redirect('/');
   });
 
