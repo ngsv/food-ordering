@@ -5,6 +5,22 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
+  // router.get('/menu', (req, res) => {
+  //   const query = `
+  //     SELECT *
+  //     FROM menu_items
+  //   `;
+  //   db.query(query)
+  //     .then(data => {
+  //       console.log(data.rows);
+  //       const templateVars = {
+  //         items: data.rows,
+  //       };
+  //       res.render('menu', templateVars);
+  //     })
+  //     .catch(err => console.log(err.message));
+  // });
+
   router.get('/menu', (req, res) => {
     const query = `
       SELECT *
@@ -12,8 +28,41 @@ module.exports = (db) => {
     `;
     db.query(query)
       .then(data => {
+
+        const appetizers = [];
+        const mains = [];
+        const sides = [];
+        const desserts = [];
+        const beverages = [];
+
+        let menuItems = data.rows;
+        console.log(data.rows);
+        console.log(data.rows.length);
+        console.log(menuItems.length);
+        console.log(menuItems[17]["category_id"]);
+
+        for (let i = 0; i < menuItems.length; i++) {
+          if (menuItems[i]["category_id"] === 1) {
+            appetizers.push(menuItems[i]);
+          } else if (menuItems[i]["category_id"] === 2) {
+            mains.push(menuItems[i]);
+          } else if (menuItems[i]["category_id"] === 3) {
+            sides.push(menuItems[i]);
+          } else if (menuItems[i]["category_id"] === 4) {
+            desserts.push(menuItems[i]);
+          } else if (menuItems[i]["category_id"] === 5) {
+            beverages.push(menuItems[i]);
+          }
+        }
+
+        console.log(beverages);
+
         const templateVars = {
-          items: data.rows,
+          appetizers: appetizers,
+          mains: mains,
+          sides: sides,
+          desserts: desserts,
+          beverages: beverages
         };
         res.render('menu', templateVars);
       })

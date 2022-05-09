@@ -1,8 +1,16 @@
 body {
+
+  .menu-category {
+    display: flex;
+    justify-content: center;
+    margin: 150px 0 0 0;
+    font-family: 'Lora', serif;
+  }
+
   .menu-items-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 200px;
+    margin-top: 100px;
     color: grey;
 
     .menu-item-card {
@@ -27,6 +35,7 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        width: 100%;
         margin: 10px 15px 7px 0;
         padding: 0;
       }

@@ -37,70 +37,134 @@
 
   <body>
 
+    <h1 class="menu-category">APPETIZERS</h1>
+
     <div class="menu-items-container">
 
-      <% items.forEach(item => { %>
+      <% appetizers.forEach(appetizer => { %>
         <div class="menu-item-card">
           <div class="">
-            <img src='<%= item["image_url"] %>'>
+            <img src='<%= appetizer["image_url"] %>'>
           </div>
           <div class="menu-item-details">
             <div class="title-description">
-              <h2><%= item["item_name"] %></h2>
+              <h2><%= appetizer["item_name"] %></h2>
               <p>
-                <%= item["description"] %>
+                <%= appetizer["description"] %>
               </p>
             </div>
             <div class="price-and-cart">
-              <p>$<%= item["price"]/100 %></p>
+              <p>$<%= appetizer["price"]/100 %></p>
               <p>Add</p>
             </div>
           </div>
         </div>
       <% }) %>
 
+    </div>
 
-      <!-- <div class="menu-item-card">
-        <div class="">
-          <img src="/images/pad-thai.jpg">
-        </div>
-        <div class="menu-item-details">
-          <div class="title-description">
-            <h2>Pad Thai</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Maecenas a ex sit amet nulla euismod eleifend. Sed eu lectus ut orci fringilla ultrices id sit amet odio.
-              Ut ultricies imperdiet eros, ut suscipit lectus vestibulum sed.
-              Vestibulum viverra varius lectus. Maecenas cursus ligula a euismod commodo.
-            </p>
-          </div>
-          <div class="price-and-cart">
-            <p>$10.00</p>
-            <p>Add</p>
-          </div>
-        </div>
-      </div> -->
+    <h1 class="menu-category">MAINS</h1>
 
-      <!-- <div class="menu-item-card">
-        <div class="">
-          <img src="/images/pad-thai.jpg">
-        </div>
-        <div class="menu-item-details">
-          <div class="title-description">
-            <h2>Pad Thai</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Maecenas a ex sit amet nulla euismod eleifend. Sed eu lectus ut orci fringilla ultrices id sit amet odio.
-              Ut ultricies imperdiet eros, ut suscipit lectus vestibulum sed.
-              Vestibulum viverra varius lectus. Maecenas cursus ligula a euismod commodo.
-            </p>
+    <div class="menu-items-container">
+
+      <% mains.forEach(main => { %>
+        <div class="menu-item-card">
+          <div class="">
+            <img src='<%= main["image_url"] %>'>
           </div>
-          <div class="price-and-cart">
-            <p>$10.00</p>
-            <p>Add</p>
+          <div class="menu-item-details">
+            <div class="title-description">
+              <h2><%= main["item_name"] %></h2>
+              <p>
+                <%= main["description"] %>
+              </p>
+            </div>
+            <div class="price-and-cart">
+              <p>$<%= main["price"]/100 %></p>
+              <p>Add</p>
+            </div>
           </div>
         </div>
-      </div> -->
+      <% }) %>
+
+    </div>
+
+    <h1 class="menu-category">SIDES</h1>
+
+    <div class="menu-items-container">
+
+      <% sides.forEach(side => { %>
+        <div class="menu-item-card">
+          <div class="">
+            <img src='<%= side["image_url"] %>'>
+          </div>
+          <div class="menu-item-details">
+            <div class="title-description">
+              <h2><%= side["item_name"] %></h2>
+              <p>
+                <%= side["description"] %>
+              </p>
+            </div>
+            <div class="price-and-cart">
+              <p>$<%= side["price"]/100 %></p>
+              <p>Add</p>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+
+    </div>
+
+    <h1 class="menu-category">DESSERTS</h1>
+
+    <div class="menu-items-container">
+
+      <% desserts.forEach(dessert => { %>
+        <div class="menu-item-card">
+          <div class="">
+            <img src='<%= dessert["image_url"] %>'>
+          </div>
+          <div class="menu-item-details">
+            <div class="title-description">
+              <h2><%= dessert["item_name"] %></h2>
+              <p>
+                <%= dessert["description"] %>
+              </p>
+            </div>
+            <div class="price-and-cart">
+              <p>$<%= dessert["price"]/100 %></p>
+              <p>Add</p>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+
+    </div>
+
+    <h1 class="menu-category">BEVERAGES</h1>
+
+    <div class="menu-items-container">
+
+      <% beverages.forEach(beverage => { %>
+        <div class="menu-item-card">
+          <div class="">
+            <img src='<%= beverage["image_url"] %>'>
+          </div>
+          <div class="menu-item-details">
+            <div class="title-description">
+              <h2><%= beverage["item_name"] %></h2>
+              <p>
+                <%= beverage["description"] %>
+              </p>
+            </div>
+            <div class="price-and-cart">
+              <p>$<%= beverage["price"]/100 %></p>
+              <p>Add</p>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+
     </div>
 
     <!-- Bootstrap JS -->
