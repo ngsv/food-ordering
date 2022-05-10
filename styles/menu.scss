@@ -47,7 +47,7 @@ body {
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        margin: 10px 15px 7px 0;
+        margin: 15px 15px 7px 0;
         padding: 0;
       }
 
@@ -64,6 +64,13 @@ body {
         justify-content: space-between;
         margin: 0;
         font-size: 0.85rem;
+
+        button {
+          background-color: transparent;
+          border: none;
+          color: #c99c20;
+          font-size: 1.15rem;
+        }
       }
 
     }
@@ -81,7 +88,6 @@ body {
 
 @media only screen and (max-width: 850px) {
   body .menu-items-container .menu-item-card {
-
     margin: 10px;
 
     img {
@@ -97,6 +103,8 @@ body {
     .title-description h2 {
       font-size: 1.1rem;
     }
-
+  }
+  body .category-tabs {
+    font-size: 0.75rem;
   }
 }

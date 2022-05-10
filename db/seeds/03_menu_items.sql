@@ -28,5 +28,5 @@ VALUES ('Thai Mango Sticky Rice', 'Sweetened with coconut milk and served with r
 -- Beverages
 INSERT INTO menu_items (item_name, description, price, image_url, category_id)
 VALUES ('Thai Iced Tea', 'Strongly brewed black tea, spiced with star anise, crushed tamarind, and cardamom.', 599, '/images/thai-iced-tea.jpg', 5),
-('Pot of Tea', 'Green Tea', 399, '/images/tea.jpg', 5),
-('Pop', 'Coke, Gingerale, Root Beer', 250, '/images/pop.jpg', 5);
+('Pot of Tea', 'Green Tea.', 399, '/images/tea.jpg', 5),
+('Pop', 'Coke, Gingerale, Root Beer.', 250, '/images/pop.jpg', 5);

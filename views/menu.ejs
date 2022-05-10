@@ -38,6 +38,7 @@
 
 <body>
 
+  <!-- Category tabs that jump to specific section of the menu when clicked -->
   <div class="category-tabs">
     <ul class="nav justify-content-center position-absolute">
       <li class="nav-item">
@@ -58,8 +59,8 @@
     </ul>
   </div>
 
-
-  <h1 class="menu-category" id="appetizers">APPETIZERS</h1>
+  <div id="appetizers" style="position: relative; top: -125px"></div>
+  <h1 class="menu-category">APPETIZERS</h1>
 
   <div class="menu-items-container">
 
@@ -77,7 +78,7 @@
         </div>
         <div class="price-and-cart">
           <p>$ <%= (appetizer["price"]/100).toFixed(2) %></p> <!-- Shows 2 decimal places -->
-          <p>Add</p>
+          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
         </div>
       </div>
     </div>
@@ -85,7 +86,8 @@
 
   </div>
 
-  <h1 class="menu-category" id="mains">MAINS</h1>
+  <div id="mains" style="position: relative; top: -100px"></div>
+  <h1 class="menu-category">MAINS</h1>
 
   <div class="menu-items-container">
 
@@ -103,7 +105,7 @@
         </div>
         <div class="price-and-cart">
           <p>$ <%= (main["price"]/100).toFixed(2) %></p>
-          <p>Add</p>
+          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
         </div>
       </div>
     </div>
@@ -111,7 +113,8 @@
 
   </div>
 
-  <h1 class="menu-category" id="sides">SIDES</h1>
+  <div id="sides" style="position: relative; top: -100px"></div>
+  <h1 class="menu-category">SIDES</h1>
 
   <div class="menu-items-container">
 
@@ -129,7 +132,7 @@
         </div>
         <div class="price-and-cart">
           <p>$ <%= (side["price"]/100).toFixed(2) %></p>
-          <p>Add</p>
+          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
         </div>
       </div>
     </div>
@@ -137,7 +140,8 @@
 
   </div>
 
-  <h1 class="menu-category" id="desserts">DESSERTS</h1>
+  <div id="desserts" style="position: relative; top: -100px"></div>
+  <h1 class="menu-category">DESSERTS</h1>
 
   <div class="menu-items-container">
 
@@ -155,7 +159,7 @@
         </div>
         <div class="price-and-cart">
           <p>$ <%= (dessert["price"]/100).toFixed(2) %></p>
-          <p>Add</p>
+          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
         </div>
       </div>
     </div>
@@ -163,7 +167,8 @@
 
   </div>
 
-  <h1 class="menu-category" id="beverages">BEVERAGES</h1>
+  <div id="beverages" style="position: relative; top: -100px"></div>
+  <h1 class="menu-category">BEVERAGES</h1>
 
   <div class="menu-items-container">
 
@@ -181,7 +186,7 @@
         </div>
         <div class="price-and-cart">
           <p>$ <%= (beverage["price"]/100).toFixed(2) %></p>
-          <p>Add</p>
+          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
         </div>
       </div>
     </div>
