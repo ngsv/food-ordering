@@ -1,23 +1,34 @@
 body {
 
+  .category-tabs {
+    display: flex;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
+    margin-top: 150px;
+    margin-bottom: 100px;
+  }
+
   .menu-category {
     display: flex;
     justify-content: center;
-    margin: 150px 0 0 0;
+    margin: 75px 0 0 0;
     font-family: 'Lora', serif;
   }
 
   .menu-items-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 50px;
+    margin: 50px 0;
     color: grey;
 
     .menu-item-card {
       display: flex;
-      margin: 15px 75px;
+      margin: 15px 25px;
       max-height: 300px;
       font-family: 'Lora', serif;
+      background-color: white;
+      border-radius: 15px;
 
       p {
         margin: 0;
@@ -57,8 +68,7 @@ body {
 
     }
     .menu-item-card:hover {
-      background-color: white;
-      border-radius: 15px;
+      background-color: #f4f5e9;
     }
   }
 }

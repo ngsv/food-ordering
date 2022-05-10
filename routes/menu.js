@@ -37,6 +37,7 @@ module.exports = (db) => {
 
         let menuItems = data.rows;
 
+        // Sort menu items by categories and place in it's own array
         for (let i = 0; i < menuItems.length; i++) {
           if (menuItems[i]["category_id"] === 1) {
             appetizers.push(menuItems[i]);
