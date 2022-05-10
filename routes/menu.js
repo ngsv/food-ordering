@@ -36,10 +36,6 @@ module.exports = (db) => {
         const beverages = [];
 
         let menuItems = data.rows;
-        console.log(data.rows);
-        console.log(data.rows.length);
-        console.log(menuItems.length);
-        console.log(menuItems[17]["category_id"]);
 
         for (let i = 0; i < menuItems.length; i++) {
           if (menuItems[i]["category_id"] === 1) {
@@ -54,8 +50,6 @@ module.exports = (db) => {
             beverages.push(menuItems[i]);
           }
         }
-
-        console.log(beverages);
 
         const templateVars = {
           appetizers: appetizers,
