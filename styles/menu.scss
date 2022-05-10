@@ -1,4 +1,69 @@
 body {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .menu {
+    width: 80vw;
+  }
+
+  .order-items {
+    position: fixed;
+    right: 10px;
+    top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 18vw;
+    height: 400px;
+    padding: 10px 10px 0;
+    font-family: 'Lora', serif;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 15px;
+
+    h3 {
+      font-size: 1.5rem; // Font size for "My Order" text of cart
+    }
+
+    p {  // Font properties for total cost section of cart
+      font-size: 0.85rem;
+      font-weight: bold;
+      line-height: 0.5;
+    }
+
+    hr {
+      border-style: solid;
+      border-width: 0;
+      background-color: black;
+      color: black;
+      width: 100%;
+      opacity: 75%;
+    }
+
+    .cart-items {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      height: 200px;
+      width: 100%;
+    }
+
+    .costs {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .each-cost {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
 
   .category-tabs {
     display: flex;
@@ -12,20 +77,20 @@ body {
   .menu-category {
     display: flex;
     justify-content: center;
-    margin: 75px 0 0 0;
+    margin: 75px 0 0;
     font-family: 'Lora', serif;
   }
 
   .menu-items-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;  // Display 2 menu items per row
     margin: 50px 0;
     color: grey;
 
     .menu-item-card {
       display: flex;
       margin: 15px 25px;
-      max-height: 300px;
+      max-height: 500px;
       font-family: 'Lora', serif;
       background-color: white;
       border-radius: 15px;
@@ -35,8 +100,8 @@ body {
       }
 
       img {
-        height: 250px;
-        width: 300px;
+        height: 200px;
+        width: 240px;
         object-fit: cover;
         margin: 5px 25px 5px 5px;
         border-radius: 10px;
@@ -72,39 +137,62 @@ body {
           font-size: 1.15rem;
         }
       }
-
     }
+
     .menu-item-card:hover {
       background-color: #f4f5e9;
     }
   }
 }
-
 @media only screen and (max-width: 1600px) {
-  body .menu-items-container {
-    grid-template-columns: 1fr;
+  body {
+    .menu-items-container {  // Display one menu item per row
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .menu {
+      width: 70vw;
+    }
+
+    .order-items {
+      width: 28vw;
+    }
   }
 }
-
 @media only screen and (max-width: 850px) {
-  body .menu-items-container .menu-item-card {
-    margin: 10px;
+  body {
 
-    img {
-      // display: none;
-      height: 150px;
-      width: 180px;
+    // Show cart on bottom of page instead for widths < 850px
+    flex-direction: column;
+    .menu {
+      width: 100%;
+    }
+    .order-items {
+      position: static;
+      width: 90%;
+      margin: 0 auto 25px;
     }
 
-    p {
-      font-size: 0.8rem;
+    .menu-items-container .menu-item-card {
+      margin: 10px;
+
+      img {
+        height: 150px;
+        width: 180px;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
+
+      .title-description h2 {
+        font-size: 1.1rem;
+      }
     }
 
-    .title-description h2 {
-      font-size: 1.1rem;
+    .category-tabs {
+      font-size: 0.75rem;
     }
-  }
-  body .category-tabs {
-    font-size: 0.75rem;
   }
 }

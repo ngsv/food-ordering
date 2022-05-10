@@ -37,161 +37,188 @@
 <%- include('partials/_header') %>
 
 <body>
+  <div class="menu">
+    <!-- Category tabs that jump to specific section of the menu when clicked -->
+    <div class="category-tabs">
+      <ul class="nav justify-content-center position-absolute">
+        <li class="nav-item">
+          <a class="nav-link text-secondary" aria-current="page" href="#appetizers">APPETIZERS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-secondary" href="#mains">MAINS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-secondary" href="#sides">SIDES</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-secondary" href="#desserts">DESSERTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-secondary" href="#beverages">BEVERAGES</a>
+        </li>
+      </ul>
+    </div>
 
-  <!-- Category tabs that jump to specific section of the menu when clicked -->
-  <div class="category-tabs">
-    <ul class="nav justify-content-center position-absolute">
-      <li class="nav-item">
-        <a class="nav-link text-secondary" aria-current="page" href="#appetizers">APPETIZERS</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#mains">MAINS</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#sides">SIDES</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#desserts">DESSERTS</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-secondary" href="#beverages">BEVERAGES</a>
-      </li>
-    </ul>
+    <div id="appetizers" style="position: relative; top: -125px"></div>
+    <h1 class="menu-category">APPETIZERS</h1>
+
+    <div class="menu-items-container">
+
+      <% appetizers.forEach(appetizer => { %>
+      <div class="menu-item-card">
+        <div class="">
+          <img src='<%= appetizer["image_url"] %>'>
+        </div>
+        <div class="menu-item-details">
+          <div class="title-description">
+            <h2><%= appetizer["item_name"] %></h2>
+            <p>
+              <%= appetizer["description"] %>
+            </p>
+          </div>
+          <div class="price-and-cart">
+            <p>$ <%= (appetizer["price"]/100).toFixed(2) %></p> <!-- Shows 2 decimal places -->
+            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+
+    </div>
+
+    <div id="mains" style="position: relative; top: -100px"></div>
+    <h1 class="menu-category">MAINS</h1>
+
+    <div class="menu-items-container">
+
+      <% mains.forEach(main => { %>
+      <div class="menu-item-card">
+        <div class="">
+          <img src='<%= main["image_url"] %>'>
+        </div>
+        <div class="menu-item-details">
+          <div class="title-description">
+            <h2><%= main["item_name"] %></h2>
+            <p>
+              <%= main["description"] %>
+            </p>
+          </div>
+          <div class="price-and-cart">
+            <p>$ <%= (main["price"]/100).toFixed(2) %></p>
+            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+
+    </div>
+
+    <div id="sides" style="position: relative; top: -100px"></div>
+    <h1 class="menu-category">SIDES</h1>
+
+    <div class="menu-items-container">
+
+      <% sides.forEach(side => { %>
+      <div class="menu-item-card">
+        <div class="">
+          <img src='<%= side["image_url"] %>'>
+        </div>
+        <div class="menu-item-details">
+          <div class="title-description">
+            <h2><%= side["item_name"] %></h2>
+            <p>
+              <%= side["description"] %>
+            </p>
+          </div>
+          <div class="price-and-cart">
+            <p>$ <%= (side["price"]/100).toFixed(2) %></p>
+            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+
+    </div>
+
+    <div id="desserts" style="position: relative; top: -100px"></div>
+    <h1 class="menu-category">DESSERTS</h1>
+
+    <div class="menu-items-container">
+
+      <% desserts.forEach(dessert => { %>
+      <div class="menu-item-card">
+        <div class="">
+          <img src='<%= dessert["image_url"] %>'>
+        </div>
+        <div class="menu-item-details">
+          <div class="title-description">
+            <h2><%= dessert["item_name"] %></h2>
+            <p>
+              <%= dessert["description"] %>
+            </p>
+          </div>
+          <div class="price-and-cart">
+            <p>$ <%= (dessert["price"]/100).toFixed(2) %></p>
+            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+
+    </div>
+
+    <div id="beverages" style="position: relative; top: -100px"></div>
+    <h1 class="menu-category">BEVERAGES</h1>
+
+    <div class="menu-items-container">
+
+      <% beverages.forEach(beverage => { %>
+      <div class="menu-item-card">
+        <div class="">
+          <img src='<%= beverage["image_url"] %>'>
+        </div>
+        <div class="menu-item-details">
+          <div class="title-description">
+            <h2><%= beverage["item_name"] %></h2>
+            <p>
+              <%= beverage["description"] %>
+            </p>
+          </div>
+          <div class="price-and-cart">
+            <p>$ <%= (beverage["price"]/100).toFixed(2) %></p>
+            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+
+    </div>
   </div>
 
-  <div id="appetizers" style="position: relative; top: -125px"></div>
-  <h1 class="menu-category">APPETIZERS</h1>
 
-  <div class="menu-items-container">
+  <div class="order-items">
 
-    <% appetizers.forEach(appetizer => { %>
-    <div class="menu-item-card">
-      <div class="">
-        <img src='<%= appetizer["image_url"] %>'>
+    <h3>My Order</h3>
+
+    <div class="cart-items">
+      <!--  -->
+    </div>
+
+    <div class="costs">
+      <hr>
+      <div class="each-cost">
+        <p>Subtotal</p>
+        <p>$0.00</p>
       </div>
-      <div class="menu-item-details">
-        <div class="title-description">
-          <h2><%= appetizer["item_name"] %></h2>
-          <p>
-            <%= appetizer["description"] %>
-          </p>
-        </div>
-        <div class="price-and-cart">
-          <p>$ <%= (appetizer["price"]/100).toFixed(2) %></p> <!-- Shows 2 decimal places -->
-          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
-        </div>
+      <div class="each-cost">
+        <p>Tax</p>
+        <p>$0.00</p>
+      </div>
+      <div class="each-cost">
+        <p>Total</p>
+        <p>$0.00</p>
       </div>
     </div>
-    <% }) %>
-
-  </div>
-
-  <div id="mains" style="position: relative; top: -100px"></div>
-  <h1 class="menu-category">MAINS</h1>
-
-  <div class="menu-items-container">
-
-    <% mains.forEach(main => { %>
-    <div class="menu-item-card">
-      <div class="">
-        <img src='<%= main["image_url"] %>'>
-      </div>
-      <div class="menu-item-details">
-        <div class="title-description">
-          <h2><%= main["item_name"] %></h2>
-          <p>
-            <%= main["description"] %>
-          </p>
-        </div>
-        <div class="price-and-cart">
-          <p>$ <%= (main["price"]/100).toFixed(2) %></p>
-          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
-        </div>
-      </div>
-    </div>
-    <% }) %>
-
-  </div>
-
-  <div id="sides" style="position: relative; top: -100px"></div>
-  <h1 class="menu-category">SIDES</h1>
-
-  <div class="menu-items-container">
-
-    <% sides.forEach(side => { %>
-    <div class="menu-item-card">
-      <div class="">
-        <img src='<%= side["image_url"] %>'>
-      </div>
-      <div class="menu-item-details">
-        <div class="title-description">
-          <h2><%= side["item_name"] %></h2>
-          <p>
-            <%= side["description"] %>
-          </p>
-        </div>
-        <div class="price-and-cart">
-          <p>$ <%= (side["price"]/100).toFixed(2) %></p>
-          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
-        </div>
-      </div>
-    </div>
-    <% }) %>
-
-  </div>
-
-  <div id="desserts" style="position: relative; top: -100px"></div>
-  <h1 class="menu-category">DESSERTS</h1>
-
-  <div class="menu-items-container">
-
-    <% desserts.forEach(dessert => { %>
-    <div class="menu-item-card">
-      <div class="">
-        <img src='<%= dessert["image_url"] %>'>
-      </div>
-      <div class="menu-item-details">
-        <div class="title-description">
-          <h2><%= dessert["item_name"] %></h2>
-          <p>
-            <%= dessert["description"] %>
-          </p>
-        </div>
-        <div class="price-and-cart">
-          <p>$ <%= (dessert["price"]/100).toFixed(2) %></p>
-          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
-        </div>
-      </div>
-    </div>
-    <% }) %>
-
-  </div>
-
-  <div id="beverages" style="position: relative; top: -100px"></div>
-  <h1 class="menu-category">BEVERAGES</h1>
-
-  <div class="menu-items-container">
-
-    <% beverages.forEach(beverage => { %>
-    <div class="menu-item-card">
-      <div class="">
-        <img src='<%= beverage["image_url"] %>'>
-      </div>
-      <div class="menu-item-details">
-        <div class="title-description">
-          <h2><%= beverage["item_name"] %></h2>
-          <p>
-            <%= beverage["description"] %>
-          </p>
-        </div>
-        <div class="price-and-cart">
-          <p>$ <%= (beverage["price"]/100).toFixed(2) %></p>
-          <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
-        </div>
-      </div>
-    </div>
-    <% }) %>
-
   </div>
 
   <!-- Bootstrap JS -->
