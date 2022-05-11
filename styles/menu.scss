@@ -73,6 +73,10 @@ body {
     margin-bottom: 100px;
   }
 
+  .category-tabs .nav-link:hover {
+    color: #c99c20 !important;
+  }
+
   .menu-category { // Category headings
     display: flex;
     justify-content: center;
@@ -134,6 +138,10 @@ body {
           border: none;
           color: #c99c20;
           font-size: 1.15rem;
+        }
+
+        button:hover {
+          color: orange;
         }
       }
     }
