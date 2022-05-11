@@ -2,24 +2,23 @@ body {
 
   .heading {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
     padding-top: 200px;
+    width: 80%;
+    margin: 0 auto;
     font-family: 'Lora', serif;
 
     h1 {
       font-size: 3rem;
       font-weight: 500;
+      margin: 25px auto;
     }
 
     p {
       font-size: 1.3rem;
       font-weight: 200;
+      margin: 25px auto;
     }
   }
-}
-
-.heading {
-
 }

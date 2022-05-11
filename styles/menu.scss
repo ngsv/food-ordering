@@ -7,19 +7,18 @@ body {
     width: 80vw;
   }
 
-  .order-items {
-    position: fixed;
+  .order-items { // Cart
+    position: fixed; // Fixed cart on right side of page
     right: 10px;
     top: 200px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: column; // "My Order" heading and costs section position
     justify-content: space-between;
     width: 18vw;
     height: 400px;
     padding: 10px 10px 0;
     font-family: 'Lora', serif;
-    background: rgba(255, 255, 255, .5);
+    background: rgba(255, 255, 255, .5); // White background with 50% opacity
     border-radius: 15px;
 
     h3 {
@@ -49,7 +48,7 @@ body {
       width: 100%;
     }
 
-    .costs {
+    .costs { // CSS for costs section of cart
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -74,7 +73,7 @@ body {
     margin-bottom: 100px;
   }
 
-  .menu-category {
+  .menu-category { // Category headings
     display: flex;
     justify-content: center;
     margin: 75px 0 0;
@@ -87,7 +86,7 @@ body {
     margin: 50px 0;
     color: grey;
 
-    .menu-item-card {
+    .menu-item-card { // Each menu item
       display: flex;
       margin: 15px 25px;
       max-height: 500px;
@@ -124,13 +123,13 @@ body {
         }
       }
 
-      .price-and-cart {
+      .price-and-cart { // CSS for price and "Add to Cart" button
         display: flex;
         justify-content: space-between;
         margin: 0;
         font-size: 0.85rem;
 
-        button {
+        button { // Add to cart button
           background-color: transparent;
           border: none;
           color: #c99c20;
@@ -151,7 +150,7 @@ body {
       grid-template-columns: 1fr;
     }
 
-    .menu {
+    .menu { // Change widths of menu items and cart
       width: 70vw;
     }
 
@@ -174,7 +173,7 @@ body {
       margin: 0 auto 25px;
     }
 
-    .menu-items-container .menu-item-card {
+    .menu-items-container .menu-item-card { // Change text and image size of menu item cards and category tabs at top of page
       margin: 10px;
 
       img {
