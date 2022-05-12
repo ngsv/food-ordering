@@ -58,13 +58,14 @@ const quantityChanged = (event) => {
 // Event listener for when the add to cart button is clicked
 const addToCart = (event) => {
   let buttonClicked = event.target;
-  let menuItem = buttonClicked.parentElement.parentElement;
-  let item = menuItem.getElementsByClassName('item-name');
-  let price = menuItem.querySelectorAll('.price-and-cart p')[0];
+  let menuItem = buttonClicked.parentElement.parentElement.parentElement;
+  let item = menuItem.querySelectorAll('.title-description h2')[0].innerText;
+  let price = menuItem.querySelectorAll('.price-and-cart p')[0].innerText;
 
   console.log(item, price);
 
   addItemToCart(item, price);
+  updateCartTotal();
 };
 
 // Create a new row in cart and adds the item to the cart
@@ -72,10 +73,19 @@ const addItemToCart = (item, price) => {
   let cartRow = document.createElement('div');
   cartRow.classList.add('cart-menu-items');
   let cartItems = document.getElementsByClassName('cart-items')[0];
+
+  // Checks if the item trying to be added is already in the cart
+  let cartItemNames = document.getElementsByClassName('cart-item-title');
+  for (let i = 0; i < cartItemNames.length; i++) {
+    if (cartItemNames[i].innerText === item) {
+      alert('This item is already in your cart.');
+      return;
+    }
+  }
   let cartRowContents = `
     <div class="cart-row">
           <span class="cart-item cart-item-title">${item}</span>
-          <span class="cart-price cart-column">${price}</span>
+          <span class="cart-price">${price}</span>
           <span class="cart-quantity">
             <input class="cart-quantity-input" type="number" value="1">
             <button class="cart-quantity-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
@@ -84,6 +94,10 @@ const addItemToCart = (item, price) => {
   `;
   cartRow.innerHTML = cartRowContents;
   cartItems.append(cartRow);
+
+  // Add event listeners to the newly added cart items
+  cartRow.getElementsByClassName('cart-quantity-btn')[0].addEventListener('click', removeCartItem);
+  cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged);
 };
 
 // Update cart total
