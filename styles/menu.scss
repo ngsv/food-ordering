@@ -22,7 +22,7 @@ body {
     border-radius: 15px;
 
     h3 {
-      font-size: 1.5rem; // Font size for "My Order" text of cart
+      font-size: 1.25rem; // Font size for "My Order" text of cart
     }
 
     p {  // Font properties for total cost section of cart
@@ -42,10 +42,55 @@ body {
 
     .cart-items {
       display: flex;
+      flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      height: 200px;
+      height: 250px;
       width: 100%;
+
+      .cart-headers {
+        display: flex;
+        font-weight: bold;
+        font-size: 0.9rem;
+        width: 100%;
+        margin-bottom: 5px;
+      }
+
+      .cart-menu-items {
+        font-size: 0.85rem;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 5px;
+
+        .cart-row {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+
+      .cart-item {
+        width: 55%
+      }
+
+      .cart-price {
+        width: 25%;
+      }
+
+      .cart-quantity {
+        width: 20%;
+      }
+
+      .cart-quantity-input {
+        height: 20px;
+        width: 35px;
+      }
+
+      .cart-quantity-btn {
+        border: none;
+        background-color: transparent;
+        color: red;
+        margin-left: 5px;
+      }
     }
 
     .costs { // CSS for costs section of cart
@@ -151,6 +196,7 @@ body {
     }
   }
 }
+
 @media only screen and (max-width: 1600px) {
   body {
     .menu-items-container {  // Display one menu item per row

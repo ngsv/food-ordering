@@ -80,7 +80,7 @@
           </div>
           <div class="price-and-cart">
             <p>$ <%= (appetizer["price"]/100).toFixed(2) %></p> <!-- Shows 2 decimal places -->
-            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+            <button class="add-to-cart" type="button" name="button"><i class="fas fa-plus-circle"></i></button>
           </div>
         </div>
       </div>
@@ -107,7 +107,7 @@
           </div>
           <div class="price-and-cart">
             <p>$ <%= (main["price"]/100).toFixed(2) %></p>
-            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+            <button class="add-to-cart" type="button" name="button"><i class="fas fa-plus-circle"></i></button>
           </div>
         </div>
       </div>
@@ -134,7 +134,7 @@
           </div>
           <div class="price-and-cart">
             <p>$ <%= (side["price"]/100).toFixed(2) %></p>
-            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+            <button class="add-to-cart" type="button" name="button"><i class="fas fa-plus-circle"></i></button>
           </div>
         </div>
       </div>
@@ -161,7 +161,7 @@
           </div>
           <div class="price-and-cart">
             <p>$ <%= (dessert["price"]/100).toFixed(2) %></p>
-            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+            <button class="add-to-cart" type="button" name="button"><i class="fas fa-plus-circle"></i></button>
           </div>
         </div>
       </div>
@@ -188,7 +188,7 @@
           </div>
           <div class="price-and-cart">
             <p>$ <%= (beverage["price"]/100).toFixed(2) %></p>
-            <button type="button" name="button"><i class="fas fa-plus-circle"></i></button>
+            <button class="add-to-cart" type="button" name="button"><i class="fas fa-plus-circle"></i></button>
           </div>
         </div>
       </div>
@@ -200,25 +200,50 @@
   <!-- Cart -->
   <div class="order-items">
 
-    <h3>My Order</h3>
+    <h3>MY ORDER</h3>
 
+    <!-- Populates when items are added to cart -->
     <div class="cart-items">
-      <!-- Populates when items are added to cart -->
+      <div class="cart-headers">
+        <span class="cart-item cart-column">ITEM</span>
+        <span class="cart-price cart-column">PRICE</span>
+        <span class="cart-quantity cart-column">QTY.</span>
+      </div>
+      <div class="cart-menu-items">
+        <div class="cart-row">
+              <span class="cart-item cart-item-title">Green Mango Salad</span>
+              <span class="cart-price cart-column">$8.99</span>
+              <span class="cart-quantity">
+                <input class="cart-quantity-input" type="number" value="1">
+                <button class="cart-quantity-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
+              </span>
+        </div>
+      </div>
+      <div class="cart-menu-items">
+        <div class="cart-row">
+              <span class="cart-item cart-item-title">Green Mango Salad</span>
+              <span class="cart-price cart-column">$8.99</span>
+              <span class="cart-quantity">
+                <input class="cart-quantity-input" type="number" value="1">
+                <button class="cart-quantity-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
+              </span>
+        </div>
+      </div>
     </div>
 
     <div class="costs">
       <hr>
       <div class="each-cost">
         <p>Subtotal</p>
-        <p>$0.00</p>
+        <p class="subtotal">$17.98</p>
       </div>
       <div class="each-cost">
         <p>Tax</p>
-        <p>$0.00</p>
+        <p class="tax">$2.34</p>
       </div>
       <div class="each-cost">
         <p>Total</p>
-        <p>$0.00</p>
+        <p class="total">$20.32</p>
       </div>
     </div>
   </div>
