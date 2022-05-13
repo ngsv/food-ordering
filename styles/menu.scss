@@ -109,6 +109,27 @@ body {
     }
   }
 
+  .submit-order-btn {
+    position: fixed;
+    right: 0px;
+    top: 625px;
+    font-family: 'Lora', serif;
+    font-size: 1rem;
+    width: 18vw;
+
+    button {
+      border-style: none;
+      border-radius: 10px;
+      background-color: #c99c20;
+      color: white;
+      padding: 5px 12px;
+    }
+
+    button:hover {
+      background-color: orange;
+    }
+  }
+
   .category-tabs {
     display: flex;
     justify-content: center;
@@ -211,9 +232,13 @@ body {
     .order-items {
       width: 28vw;
     }
+
+    .submit-order-btn {
+      width: 28vw;
+    }
   }
 }
-@media only screen and (max-width: 850px) {
+@media only screen and (max-width: 1100px) {
   body {
 
     // Show cart on bottom of page instead for widths < 850px
@@ -225,6 +250,10 @@ body {
       position: static;
       width: 90%;
       margin: 0 auto 25px;
+    }
+    .submit-order-btn {
+      position: static;
+      margin: 0 0 50px 50px;
     }
 
     .menu-items-container .menu-item-card { // Change text and image size of menu item cards and category tabs at top of page

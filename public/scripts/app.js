@@ -51,6 +51,8 @@ const quantityChanged = (event) => {
   let quantityElement = event.target;
   if (isNaN(quantityElement.value) || quantityElement.value <= 0) {
     quantityElement.value = 1;
+  } else if (quantityElement.value > 20) {
+    quantityElement.value = 20;
   }
   updateCartTotal();
 };
@@ -61,8 +63,6 @@ const addToCart = (event) => {
   let menuItem = buttonClicked.parentElement.parentElement.parentElement;
   let item = menuItem.querySelectorAll('.title-description h2')[0].innerText;
   let price = menuItem.querySelectorAll('.price-and-cart p')[0].innerText;
-
-  console.log(item, price);
 
   addItemToCart(item, price);
   updateCartTotal();
@@ -116,9 +116,6 @@ const updateCartTotal = () => {
     const quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
     const price = parseFloat(priceElement.innerText.replace('$', ''));
     const quantity = quantityElement.value;
-
-    console.log(price);
-    console.log(quantity);
 
     subtotal += (price * quantity);
   }
