@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const sendText = require('./twilio.js');
 
 module.exports = (db) => {
 
@@ -46,6 +47,10 @@ module.exports = (db) => {
         res.render('menu', templateVars);
       })
       .catch(err => console.log(err.message));
+  });
+
+  router.post('/menu', (req, res) => {
+    sendText();
   });
 
   return router;
