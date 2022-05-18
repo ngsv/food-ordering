@@ -58,13 +58,12 @@ body {
 
       .cart-menu-items {
         font-size: 0.85rem;
-        flex-direction: column;
         width: 100%;
-        margin-bottom: 5px;
 
         .cart-row {
           display: flex;
           flex-direction: row;
+          margin-bottom: 5px;
         }
       }
 

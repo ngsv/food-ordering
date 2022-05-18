@@ -1,12 +1,18 @@
 // Client facing scripts here
 
+// require("dotenv").config();
+//
+// const accountSid = process.env.TWILIO_ACCOUNT_SID; // Twilio account sid
+// const authToken = process.env.TWILIO_ACCOUNT_AUTHTOKEN; // Twilio authentication token
+//
+// const client = require('twilio')(accountSid, authToken);
+
 /* eslint-env jquery */
 
 $(document).ready(function() {
 
   // Accordian FAQ page
   const faqs = document.querySelectorAll('.faq');
-
   faqs.forEach(faq => {
     faq.addEventListener('click', () => {
       faq.classList.toggle('active');
@@ -15,7 +21,6 @@ $(document).ready(function() {
 
   // Remove item from cart
   const removeCartItemButtons = document.getElementsByClassName('cart-quantity-btn');
-
   for (let i = 0; i < removeCartItemButtons.length; i++) {
     let button = removeCartItemButtons[i];
     button.addEventListener('click', removeCartItem);
@@ -23,7 +28,6 @@ $(document).ready(function() {
 
   // Update cart item quantity
   const quantityFields = document.getElementsByClassName('cart-quantity-input');
-
   for (let i = 0; i < quantityFields.length; i++) {
     let quantityField = quantityFields[i];
     quantityField.addEventListener('change', quantityChanged);
@@ -31,11 +35,13 @@ $(document).ready(function() {
 
   // Add item to cart
   const addToCartButtons = document.getElementsByClassName('add-to-cart');
-
   for (let i = 0; i < addToCartButtons.length; i++) {
     let button = addToCartButtons[i];
     button.addEventListener('click', addToCart);
   }
+
+  // Submit order
+  document.querySelectorAll('.submit-order-btn button')[0].addEventListener('click', submitOrder);
 
 });
 
@@ -68,11 +74,32 @@ const addToCart = (event) => {
   updateCartTotal();
 };
 
+// Event listener for when submit order button is clicked
+const submitOrder = (event) => {
+
+  let buttonClicked = event.target;
+  let cartItems = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-menu-items')[0];
+  let cartRows = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-row');
+
+  if (cartRows.length !== 0) { // Only alerts user if the cart is not empty
+    alert('Your order has been placed. Thank you!');
+    sendTextMessage();
+  }
+
+  while (cartItems.hasChildNodes()) {
+    console.log(cartItems);
+    cartItems.removeChild(cartItems.firstChild);
+  }
+
+  updateCartTotal();
+};
+
 // Create a new row in cart and adds the item to the cart
 const addItemToCart = (item, price) => {
+
   let cartRow = document.createElement('div');
-  cartRow.classList.add('cart-menu-items');
-  let cartItems = document.getElementsByClassName('cart-items')[0];
+  cartRow.classList.add('cart-row');
+  let cartItems = document.getElementsByClassName('cart-menu-items')[0]; // cart-menu-items is the container that holds all the cart-row divs
 
   // Checks if the item trying to be added is already in the cart
   let cartItemNames = document.getElementsByClassName('cart-item-title');
@@ -83,14 +110,12 @@ const addItemToCart = (item, price) => {
     }
   }
   let cartRowContents = `
-    <div class="cart-row">
-          <span class="cart-item cart-item-title">${item}</span>
-          <span class="cart-price">${price}</span>
-          <span class="cart-quantity">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="cart-quantity-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
-          </span>
-    </div>
+    <span class="cart-item cart-item-title">${item}</span>
+    <span class="cart-price">${price}</span>
+    <span class="cart-quantity">
+      <input class="cart-quantity-input" type="number" value="1">
+      <button class="cart-quantity-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
+    </span>
   `;
   cartRow.innerHTML = cartRowContents;
   cartItems.append(cartRow);
@@ -124,7 +149,18 @@ const updateCartTotal = () => {
   tax = (subtotal * 0.13).toFixed(2);
   total = (subtotal * 1.13).toFixed(2);
 
-  document.getElementsByClassName('subtotal')[0].innerText = '$' + subtotal;
-  document.getElementsByClassName('tax')[0].innerText = '$' + tax;
-  document.getElementsByClassName('total')[0].innerText = '$' + total;
+  document.getElementsByClassName('subtotal')[0].innerText = '$ ' + subtotal;
+  document.getElementsByClassName('tax')[0].innerText = '$ ' + tax;
+  document.getElementsByClassName('total')[0].innerText = '$ ' + total;
+};
+
+const sendTextMessage = () => {
+  client.messages
+    .create({
+      body: 'Your order has been placed!',
+      to: '+6477181094', // Text this number
+      from: '+9704808780' // From a valid Twilio number
+    })
+    .then((message) => console.log(message.sid))
+    .catch((err) => console.log(err));
 };
