@@ -32,4 +32,16 @@ nav {
   .social-media-icons:hover {
     color: orange;
   }
+
+  #cart-badge {
+    background-color: lightgray;
+    border-radius: 7px;
+    color: #d9911e;
+    font-family: 'Lora', serif;
+    font-weight: bolder;
+    padding: 2px 3px;
+    position: relative;
+    left: -7px;
+    bottom: 8px;
+  }
 }

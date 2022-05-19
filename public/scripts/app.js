@@ -35,6 +35,7 @@ const removeCartItem = (event) => {
   let buttonClicked = event.target;
   buttonClicked.parentElement.parentElement.parentElement.remove();
   updateCartTotal();
+  updateCartBadge();
 };
 
 // Event listener for when the quantity is changed for an item in the cart
@@ -46,6 +47,7 @@ const quantityChanged = (event) => {
     quantityElement.value = 20;
   }
   updateCartTotal();
+  updateCartBadge();
 };
 
 // Event listener for when the add to cart button is clicked
@@ -57,6 +59,7 @@ const addToCart = (event) => {
 
   addItemToCart(item, price);
   updateCartTotal();
+  updateCartBadge();
 };
 
 // Event listener for when submit order button is clicked
@@ -77,6 +80,7 @@ const submitOrder = (event) => {
   }
 
   updateCartTotal();
+  updateCartBadge();
 };
 
 // Create a new row in cart and adds the item to the cart
@@ -137,6 +141,24 @@ const updateCartTotal = () => {
   document.getElementsByClassName('subtotal')[0].innerText = '$ ' + subtotal;
   document.getElementsByClassName('tax')[0].innerText = '$ ' + tax;
   document.getElementsByClassName('total')[0].innerText = '$ ' + total;
+};
+
+// Update cart badge
+const updateCartBadge = () => {
+  const cartItemContainer = document.getElementsByClassName('cart-items')[0];
+  const cartRows = cartItemContainer.getElementsByClassName('cart-row');
+  const cartBadge = document.getElementById('cart-badge');
+
+  let totalQuantity = 0;
+
+  for (let i = 0; i < cartRows.length; i++) {
+    const cartRow = cartRows[i];
+    const quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
+    const quantity = parseFloat(quantityElement.value);
+
+    totalQuantity += quantity;
+  }
+  document.getElementById('cart-badge').innerText = totalQuantity;
 };
 
 const createOrder = () => {
