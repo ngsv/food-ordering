@@ -8,7 +8,7 @@ const client = require('twilio')(accountSid, authToken);
 const sendTextMessage = () => {
   client.messages
     .create({
-      body: 'Your order has been placed!',
+      body: 'Your order with Ayutthaya has been placed!',
       to: '+16477181094', // Text this number
       from: '+19704808780' // From a valid Twilio number
     })

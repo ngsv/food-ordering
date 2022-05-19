@@ -9,14 +9,15 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    min-height: 600px;
+    min-height: 650px;
 
     h3 {
-      position: relative;
+      position: absolute;
+      top: 325px;
       font-family: 'Lora', serif;
       font-size: 4rem;
       color: white;
-      margin: 200px 50px 0;
+      text-align: center;
     }
   }
 

@@ -19,7 +19,7 @@ body {
   body {
 
     .contact-form {
-      width: 65%;
+      width: 75%;
     }
 
     .contact-description {
@@ -30,8 +30,16 @@ body {
 
 @media only screen and (max-width: 850px) {
   body {
-    .imageContainer .headerTitle {
-      font-size: 2.5rem;
+    .imageContainer {
+      min-height: 400px;
+
+      .headerTitle {
+        font-size: 2.5rem;
+      }
+
+      h3 {
+        top: 225px;
+      }
     }
   }
 }

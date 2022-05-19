@@ -21,4 +21,15 @@ nav {
   .socials i {
     margin: 0 20px 0 0;
   }
+
+  .social-media-icons {
+    border-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .social-media-icons:hover {
+    color: orange;
+  }
 }
