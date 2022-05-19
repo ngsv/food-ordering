@@ -4,14 +4,6 @@
 
 $(document).ready(function() {
 
-  // Accordian FAQ page
-  const faqs = document.querySelectorAll('.faq');
-  faqs.forEach(faq => {
-    faq.addEventListener('click', () => {
-      faq.classList.toggle('active');
-    });
-  });
-
   // Remove item from cart
   const removeCartItemButtons = document.getElementsByClassName('cart-quantity-btn');
   for (let i = 0; i < removeCartItemButtons.length; i++) {
@@ -146,17 +138,6 @@ const updateCartTotal = () => {
   document.getElementsByClassName('tax')[0].innerText = '$ ' + tax;
   document.getElementsByClassName('total')[0].innerText = '$ ' + total;
 };
-
-// const sendTextMessage = () => {
-//   client.messages
-//     .create({
-//       body: 'Your order has been placed!',
-//       to: '+16477181094', // Text this number
-//       from: '+19704808780' // From a valid Twilio number
-//     })
-//     .then((message) => console.log(message.sid))
-//     .catch((err) => console.log(err));
-// };
 
 const createOrder = () => {
   $.ajax({

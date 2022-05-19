@@ -30,7 +30,7 @@
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
   <!-- App JS -->
-  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/home.js"></script>
 </head>
 
 <%- include('partials/_header') %>
@@ -41,22 +41,31 @@
     <h3>THAI CUISINE</h3>
   </div>
   <div class="frontPageTiles">
+
     <div class="tile">
-      <!-- <div class="innerContent">
-        Absolutely-positioned content isn't counted in the parent's height!
-      </div> -->
-      <button type="button" name="button">
+      <button id="story-tile" type="button" href="/story">
         <img src="/images/story-tile.jpg" alt="">
+        <div class="innerContent">
+          <h3>STORY</h3>
+        </div>
       </button>
     </div>
+
     <div class="tile">
-      <button type="button" name="button">
-        <img src="/images/story-tile.jpg" alt="">
+      <button id="menu-tile" type="button" name="button">
+        <img src="/images/chicken-satay.jpg" alt="">
+        <div class="innerContent">
+          <h3>OUR MENU</h3>
+        </div>
       </button>
     </div>
-    <div class="tile">
-      <button type="button" name="button">
-        <img src="/images/story-tile.jpg" alt="">
+
+    <div class="tile faq-tile">
+      <button id="faq-tile" type="button" name="button">
+        <img src="/images/faq-tile.jpg" alt="">
+        <div class="innerContent">
+          <h3>FAQ</h3>
+        </div>
       </button>
     </div>
   </div>

@@ -15,6 +15,7 @@ body {
       position: relative;
       font-family: 'Lora', serif;
       font-size: 4rem;
+      color: white;
       margin: 200px 50px 0;
     }
   }
@@ -28,7 +29,8 @@ body {
     right: 0px;
     bottom: 0px;
     left: 0px;
-    opacity: 0.6;
+    opacity: 0.7;
+    filter: brightness(50%);
     width: 100%;
   }
 }
