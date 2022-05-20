@@ -49,8 +49,21 @@ module.exports = (db) => {
       .catch(err => console.log(err.message));
   });
 
-  router.post('/menu', (req, res) => {
-    sendText();
+  router.get('/sms', (req, res) => {
+    if (req.session.user_id !== undefined) {
+      sendText();
+      res.send('Logged in.');
+    } else {
+      res.send('Not logged in.');
+    }
+  });
+
+  router.get('/sms2', (req, res) => {
+    if (req.session.user_id !== undefined) {
+      res.send('Logged in.');
+    } else {
+      res.send('Not logged in.');
+    }
   });
 
   return router;

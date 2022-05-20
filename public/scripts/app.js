@@ -26,7 +26,7 @@ $(document).ready(function() {
   }
 
   // Submit order
-  document.querySelectorAll('.submit-order-btn button')[0].addEventListener('click', submitOrder);
+  document.querySelectorAll('.submit-order-btn button')[0].addEventListener('click', createOrder);
 
 });
 
@@ -71,7 +71,7 @@ const submitOrder = (event) => {
 
   if (cartRows.length !== 0) { // Only alerts user if the cart is not empty
     alert('Your order has been placed. Thank you!');
-    createOrder();
+    // createOrder();
   }
 
   while (cartItems.hasChildNodes()) {
@@ -158,14 +158,49 @@ const updateCartBadge = () => {
 
     totalQuantity += quantity;
   }
-  document.getElementById('cart-badge').innerText = totalQuantity;
+  cartBadge.innerText = totalQuantity;
 };
 
-const createOrder = () => {
-  $.ajax({
-    url: '/menu',
-    method: 'POST'
-  })
-    .done(results => console.log(results))
-    .fail(error => console.log(`Error: ${error.message}`));
+const createOrder = (event) => {
+
+  let buttonClicked = event.target;
+  let cartItems = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-menu-items')[0];
+  let cartRows = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-row');
+
+  if (cartRows.length !== 0) {
+    $.ajax({
+      url: '/sms',
+      method: 'GET'
+    })
+      .done((results) => {
+        if (results === "Logged in.") {
+
+          alert('Your order has been placed. Thank you!');
+
+          while (cartItems.hasChildNodes()) {
+            console.log(cartItems);
+            cartItems.removeChild(cartItems.firstChild);
+          }
+        } else if (results === "Not logged in.") {
+          alert('Please login to place an order.');
+        }
+
+        updateCartTotal();
+        updateCartBadge();
+      })
+      .fail(error => console.log(`Error: ${error.message}`));
+  } else if (cartRows.length === 0) {
+    $.ajax({
+      url: '/sms2',
+      method: 'GET'
+    })
+      .done((results) => {
+        if (results === "Logged in.") {
+          alert('Your cart is currently empty. Please add an item to your cart to place an order.');
+        } else if (results === "Not logged in.") {
+          alert('Please login to place an order.');
+        }
+      })
+      .fail(error => console.log(`Error: ${error.message}`));
+  }
 };

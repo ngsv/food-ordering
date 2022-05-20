@@ -12,7 +12,6 @@ const sendTextMessage = () => {
       to: '+16477181094', // Text this number
       from: '+19704808780' // From a valid Twilio number
     })
-    .then((message) => console.log(message.sid))
     .catch((err) => console.log(err));
 };
 
