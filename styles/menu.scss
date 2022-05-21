@@ -47,6 +47,7 @@ body {
       align-items: flex-start;
       height: 250px;
       width: 100%;
+      overflow-y:auto; // Adds scroll bar to div when div is full
 
       .cart-headers {
         display: flex;
