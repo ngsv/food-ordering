@@ -40,7 +40,7 @@ app.use(
 
 app.use(express.static("public"));
 
-// Separated Routes for each Resource
+// Separated routes for each resource
 const usersRoutes = require("./routes/users");
 const navigationRoutes = require("./routes/navigation");
 const menuRoutes = require("./routes/menu");

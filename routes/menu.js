@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const sendText = require('./twilio.js');
+const sendTextMessage = require('./twilio.js');
 
 module.exports = (db) => {
 
@@ -51,7 +51,7 @@ module.exports = (db) => {
 
   router.get('/sms', (req, res) => {
     if (req.session.user_id !== undefined) {
-      sendText();
+      sendTextMessage(req.session.fname, req.session.lname, req.session.phone);
       res.send('Logged in.');
     } else {
       res.send('Not logged in.');
