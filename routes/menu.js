@@ -3,6 +3,8 @@
 const express = require('express');
 const router  = express.Router();
 const sendTextMessage = require('./twilio.js');
+const fpe = require('node-fpe');
+const cipher = fpe({ secret: process.env.FPE_SECRET });
 
 module.exports = (db) => {
 
@@ -51,7 +53,7 @@ module.exports = (db) => {
 
   router.get('/sms', (req, res) => {
     if (req.session.user_id !== undefined) {
-      sendTextMessage(req.session.fname, req.session.lname, req.session.phone);
+      sendTextMessage(req.session.fname, req.session.lname, req.session.phone, cipher.encrypt(Date.now().toString().slice(7)));
       res.send('Logged in.');
     } else {
       res.send('Not logged in.');

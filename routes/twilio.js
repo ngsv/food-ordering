@@ -5,10 +5,10 @@ const authToken = process.env.TWILIO_ACCOUNT_AUTHTOKEN; // Twilio authentication
 
 const client = require('twilio')(accountSid, authToken);
 
-const sendTextMessage = (firstName, lastName, phone) => {
+const sendTextMessage = (firstName, lastName, phone, orderNum) => {
   client.messages
     .create({
-      body: `Thank you ${firstName} ${lastName}, your order with Ayutthaya has been placed!`,
+      body: `Thank you ${firstName} ${lastName}, your order with Ayutthaya has been placed! Your order number is: ${orderNum}`,
       to: phone, // Text this number
       from: '+19704808780' // From a valid Twilio number
     })

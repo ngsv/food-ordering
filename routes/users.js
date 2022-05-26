@@ -19,6 +19,7 @@ module.exports = (db) => {
         console.log(user);
 
         if (user.length === 1) { // Should return one result if username is found
+          // Store the info of the logged in user
           req.session.user_id = req.params.id;
           req.session.fname = user[0]['first_name'];
           req.session.lname = user[0]['last_name'];
