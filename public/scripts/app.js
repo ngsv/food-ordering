@@ -62,27 +62,6 @@ const addToCart = (event) => {
   updateCartBadge();
 };
 
-// Event listener for when submit order button is clicked
-const submitOrder = (event) => {
-
-  let buttonClicked = event.target;
-  let cartItems = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-menu-items')[0];
-  let cartRows = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-row');
-
-  if (cartRows.length !== 0) { // Only alerts user if the cart is not empty
-    alert('Your order has been placed. Thank you!');
-    // createOrder();
-  }
-
-  while (cartItems.hasChildNodes()) {
-    console.log(cartItems);
-    cartItems.removeChild(cartItems.firstChild);
-  }
-
-  updateCartTotal();
-  updateCartBadge();
-};
-
 // Create a new row in cart and adds the item to the cart
 const addItemToCart = (item, price) => {
 
@@ -98,6 +77,7 @@ const addItemToCart = (item, price) => {
       return;
     }
   }
+
   let cartRowContents = `
     <span class="cart-item cart-item-title">${item}</span>
     <span class="cart-price">${price}</span>
@@ -106,6 +86,7 @@ const addItemToCart = (item, price) => {
       <button class="cart-quantity-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
     </span>
   `;
+
   cartRow.innerHTML = cartRowContents;
   cartItems.append(cartRow);
 
@@ -161,20 +142,21 @@ const updateCartBadge = () => {
   cartBadge.innerText = totalQuantity;
 };
 
+// Event listener for when submit order button is clicked
 const createOrder = (event) => {
 
   let buttonClicked = event.target;
   let cartItems = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-menu-items')[0];
   let cartRows = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-row');
 
-  if (cartRows.length !== 0) {
+  if (cartRows.length !== 0) { // Checks if there are items in the cart
+    // GET route in menu.js
     $.ajax({
       url: '/sms',
       method: 'GET'
     })
       .done((results) => {
         if (results === "Logged in.") {
-
           alert('Your order has been placed. Thank you!');
 
           while (cartItems.hasChildNodes()) {
@@ -189,7 +171,7 @@ const createOrder = (event) => {
         updateCartBadge();
       })
       .fail(error => console.log(`Error: ${error.message}`));
-  } else if (cartRows.length === 0) {
+  } else if (cartRows.length === 0) { // If there are no items in the cart
     $.ajax({
       url: '/sms2',
       method: 'GET'

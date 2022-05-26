@@ -1,8 +1,9 @@
 body {
   min-height: 100vh;
 
-  background-image: url("../images/flowers.png");
+  background-image: url("../images/flowers.png"); // Background pattern across all pages
 
+  // Background image for page header
   .imageContainer {
     display: flex;
     flex-direction: row;

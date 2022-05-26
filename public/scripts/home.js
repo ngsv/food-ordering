@@ -1,6 +1,6 @@
 /* eslint-env jquery */
 
-// Scripts for home page
+// Scripts for home page - three tiles
 
 $(document).ready(function() {
 

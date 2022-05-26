@@ -36,12 +36,12 @@ body {
       font-size: 1rem;
     }
 
-    .faq.active .answer {
+    .faq.active .answer { // When question is clicked animate answer
       max-height: 300px;
       animation: fade 1s ease-in-out;
     }
 
-    .faq.active svg {
+    .faq.active svg { // Rotate arrow when question is clicked
       transform: rotate(180deg);
     }
 

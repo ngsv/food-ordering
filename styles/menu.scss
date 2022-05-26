@@ -31,7 +31,7 @@ body {
       line-height: 0.5;
     }
 
-    hr {
+    hr { // Horizontal rule above cart totals
       border-style: solid;
       border-width: 0;
       background-color: black;
@@ -40,7 +40,7 @@ body {
       opacity: 75%;
     }
 
-    .cart-items {
+    .cart-items { // Cart div below "MY ORDER" header
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -49,7 +49,7 @@ body {
       width: 100%;
       overflow-y:auto; // Adds scroll bar to div when div is full
 
-      .cart-headers {
+      .cart-headers { // "ITEM", "PRICE", "QTY." headers
         display: flex;
         font-weight: bold;
         font-size: 0.9rem;
@@ -57,17 +57,18 @@ body {
         margin-bottom: 5px;
       }
 
-      .cart-menu-items {
+      .cart-menu-items { // Container that contains all the cart-row divs
         font-size: 0.85rem;
         width: 100%;
 
-        .cart-row {
+        .cart-row { // Each individual row in the cart
           display: flex;
           flex-direction: row;
           margin-bottom: 5px;
         }
       }
 
+      // Specify widths of each column in the cart
       .cart-item {
         width: 55%
       }
@@ -80,12 +81,12 @@ body {
         width: 25%;
       }
 
-      .cart-quantity-input {
+      .cart-quantity-input { // Dimensions for the quantity field of each item in the cart
         height: 20px;
         width: 35px;
       }
 
-      .cart-quantity-btn {
+      .cart-quantity-btn { // Remove from cart button
         border: none;
         background-color: transparent;
         color: red;
@@ -98,7 +99,7 @@ body {
       flex-direction: column;
       width: 100%;
 
-      .each-cost {
+      .each-cost { // "Subtotal", "Tax", and "Total" in their own rows
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -150,7 +151,7 @@ body {
     font-family: 'Lora', serif;
   }
 
-  .menu-items-container {
+  .menu-items-container { // Contains all the menu item cards for a food category
     display: grid;
     grid-template-columns: 1fr 1fr;  // Display 2 menu items per row
     margin: 50px 0;
@@ -176,7 +177,7 @@ body {
         border-radius: 10px;
       }
 
-      .menu-item-details {
+      .menu-item-details { // Content of the menu item, except for the image
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -188,7 +189,7 @@ body {
       .title-description {
         margin: 0;
 
-        h2 {
+        h2 { // Menu item name
           font-size: 1.3rem;
         }
       }
@@ -246,7 +247,7 @@ body {
     .menu {
       width: 100%;
     }
-    .order-items {
+    .order-items { // Cart div
       position: static;
       width: 90%;
       margin: 0 auto 25px;

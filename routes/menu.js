@@ -51,7 +51,7 @@ module.exports = (db) => {
       .catch(err => console.log(err.message));
   });
 
-  router.get('/sms', (req, res) => {
+  router.get('/sms', (req, res) => { // GET request called when order placed with items in cart
     if (req.session.user_id !== undefined) {
       sendTextMessage(req.session.fname, req.session.lname, req.session.phone, cipher.encrypt(Date.now().toString().slice(7)));
       res.send('Logged in.');
@@ -60,7 +60,7 @@ module.exports = (db) => {
     }
   });
 
-  router.get('/sms2', (req, res) => {
+  router.get('/sms2', (req, res) => { // GET request called when order placed without items in cart
     if (req.session.user_id !== undefined) {
       res.send('Logged in.');
     } else {

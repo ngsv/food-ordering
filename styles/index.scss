@@ -33,9 +33,8 @@ body {
 
   .frontPageTiles {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-
+    grid-template-columns: repeat(3, 1fr); // 3 columns
+    grid-template-rows: 1fr; // 1 row
 
     .tile {
       position: relative;
@@ -55,7 +54,8 @@ body {
           filter: brightness(70%);
         }
 
-        .innerContent h3 {
+        .innerContent h3 { // "Story", "Our Menu", "FAQ" text on tiles
+          // Center text on tiles
           position: absolute;
           top: 50%;
           left: 50%;
@@ -73,12 +73,5 @@ body {
         }
       }
     }
-
-    .faq-tile {
-      background-color: darkorange;
-    }
-
   }
-
-
 }

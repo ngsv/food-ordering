@@ -1,6 +1,6 @@
 /* eslint-env jquery */
 
-// Navbar scripts
+// Navbar scripts - social media icons
 
 $(document).ready(function () {
 
