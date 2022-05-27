@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const sendTextMessage = require('./twilio.js');
+const sendTextMessage = require('../api/twilio.js');
 const fpe = require('node-fpe');
 const cipher = fpe({ secret: process.env.FPE_SECRET });
 
