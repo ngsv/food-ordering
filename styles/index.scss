@@ -8,12 +8,13 @@ body {
     min-height: 800px;
 
     h3 {
-      position: relative;
+      position: absolute;
       font-family: 'Lora', serif;
       font-size: 4rem;
       font-weight: bold;
       color: white;
-      margin: 200px 50px 0;
+      top: 400px;
+      text-align: center;
     }
   }
 
@@ -34,7 +35,7 @@ body {
   .frontPageTiles {
     display: grid;
     grid-template-columns: repeat(3, 1fr); // 3 columns
-    grid-template-rows: 1fr; // 1 row
+    grid-template-rows: 30rem; // 1 row
 
     .tile {
       position: relative;
@@ -45,6 +46,7 @@ body {
       button {
         border-style: none;
         height: 100%;
+        width: 100%;
 
         img {
           width: 100%;
@@ -72,6 +74,31 @@ body {
           color: orange;
         }
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  body {
+    .frontPageTiles {
+      grid-template-rows: 15rem; // 1 row
+
+      .tile button .innerContent h3 {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  body {
+    .frontPageWallpaper h3 {
+      font-size: 2.5rem;
+    }
+
+    .frontPageTiles {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, 20rem);
     }
   }
 }
