@@ -25,6 +25,7 @@ module.exports = (db) => {
           req.session.lname = user[0]['last_name'];
           req.session.phone = user[0]['phone_number'];
           req.session.email = user[0]['email'];
+          req.session.is_admin = user[0]['is_admin'];
 
           res.redirect('/');
         } else {

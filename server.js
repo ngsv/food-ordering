@@ -52,7 +52,17 @@ app.use("/", menuRoutes(db));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  const templateVars = {
+    user: {
+      user_id: req.session.user_id,
+      first_name: req.session.fname,
+      last_name: req.session.lname,
+      phone: req.session.phone,
+      email: req.session.email,
+      is_admin: req.session.is_admin
+    }
+  };
+  res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {

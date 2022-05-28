@@ -44,7 +44,15 @@ module.exports = (db) => {
           mains: mains,
           sides: sides,
           desserts: desserts,
-          beverages: beverages
+          beverages: beverages,
+          user: {
+            user_id: req.session.user_id,
+            first_name: req.session.fname,
+            last_name: req.session.lname,
+            phone: req.session.phone,
+            email: req.session.email,
+            is_admin: req.session.is_admin
+          }
         };
         res.render('menu', templateVars);
       })
