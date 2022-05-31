@@ -2,37 +2,27 @@
 
 const express = require('express');
 const router = express.Router();
+const { getUserWithId } = require('../db/queries.js')
 
 module.exports = (db) => {
+
   router.get('/login/:id', (req, res) => {
-
-    const query = `
-        SELECT *
-        FROM users
-        WHERE username = $1
-      `;
     const queryParams = [req.params.id];
-
-    db.query(query, queryParams)
-      .then(data => {
-        const user = data.rows;
-        console.log(user);
-
-        if (user.length === 1) { // Should return one result if username is found
-          // Store the info of the logged in user
+    getUserWithId(queryParams)
+      .then(function(user) {
+        if (user !== null) {
           req.session.user_id = req.params.id;
-          req.session.fname = user[0]['first_name'];
-          req.session.lname = user[0]['last_name'];
-          req.session.phone = user[0]['phone_number'];
-          req.session.email = user[0]['email'];
-          req.session.is_admin = user[0]['is_admin'];
+          req.session.fname = user['first_name'];
+          req.session.lname = user['last_name'];
+          req.session.phone = user['phone_number'];
+          req.session.email = user['email'];
+          req.session.is_admin = user['is_admin'];
 
           res.redirect('/');
         } else {
           res.send("403 Forbidden");
         }
-      })
-      .catch(err => console.log(err.message));
+      });
   });
 
 

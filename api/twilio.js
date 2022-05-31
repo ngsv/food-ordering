@@ -5,7 +5,17 @@ const authToken = process.env.TWILIO_ACCOUNT_AUTHTOKEN; // Twilio authentication
 
 const client = require('twilio')(accountSid, authToken);
 
-const sendTextMessage = (firstName, lastName, phone, orderNum) => {
+const sendTextRestaurant = (firstName, lastName, phone, orderNum) => {
+  client.messages
+    .create({
+      body: `A new order has been placed by ${firstName} ${lastName}, order number: ${orderNum}`,
+      to: '+16477181094',
+      from: '+19704808780'
+    })
+    .catch((err) => console.log(err));
+};
+
+const sendTextCustomer = (firstName, lastName, phone, orderNum) => {
   client.messages
     .create({
       body: `Thank you ${firstName} ${lastName}, your order with Ayutthaya has been placed! Your order number is: ${orderNum}`,
@@ -15,4 +25,7 @@ const sendTextMessage = (firstName, lastName, phone, orderNum) => {
     .catch((err) => console.log(err));
 };
 
-module.exports = sendTextMessage;
+module.exports = {
+  sendTextRestaurant,
+  sendTextCustomer
+};

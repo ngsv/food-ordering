@@ -22,7 +22,7 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   order_time TIMESTAMP,
-  expected_pickup_time TIMESTAMP,
+  prep_time TIMESTAMP,
   total_amount DECIMAL,
   is_complete BOOLEAN DEFAULT FALSE
 );

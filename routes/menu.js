@@ -2,49 +2,23 @@
 
 const express = require('express');
 const router  = express.Router();
-const sendTextMessage = require('../api/twilio.js');
+const { getAllMenuItems } = require('../db/queries.js');
+const { sendTextRestaurant, sendTextCustomer } = require('../api/twilio.js');
+// const createNewOrder = require('../public/scripts/queue.js');
 const fpe = require('node-fpe');
 const cipher = fpe({ secret: process.env.FPE_SECRET });
 
 module.exports = (db) => {
 
   router.get('/menu', (req, res) => {
-    const query = `
-      SELECT *
-      FROM menu_items
-    `;
-    db.query(query)
-      .then(data => {
-
-        const appetizers = [];
-        const mains = [];
-        const sides = [];
-        const desserts = [];
-        const beverages = [];
-
-        let menuItems = data.rows;
-
-        // Sort menu items by categories and place in it's own array
-        for (let i = 0; i < menuItems.length; i++) {
-          if (menuItems[i]["category_id"] === 1) {
-            appetizers.push(menuItems[i]);
-          } else if (menuItems[i]["category_id"] === 2) {
-            mains.push(menuItems[i]);
-          } else if (menuItems[i]["category_id"] === 3) {
-            sides.push(menuItems[i]);
-          } else if (menuItems[i]["category_id"] === 4) {
-            desserts.push(menuItems[i]);
-          } else if (menuItems[i]["category_id"] === 5) {
-            beverages.push(menuItems[i]);
-          }
-        }
-
+    getAllMenuItems()
+      .then(function(menu) {
         const templateVars = {
-          appetizers: appetizers,
-          mains: mains,
-          sides: sides,
-          desserts: desserts,
-          beverages: beverages,
+          appetizers: menu.appetizers,
+          mains: menu.mains,
+          sides: menu.sides,
+          desserts: menu.desserts,
+          beverages: menu.beverages,
           user: {
             user_id: req.session.user_id,
             first_name: req.session.fname,
@@ -55,26 +29,42 @@ module.exports = (db) => {
           }
         };
         res.render('menu', templateVars);
-      })
-      .catch(err => console.log(err.message));
+      });
   });
 
-  router.get('/sms', (req, res) => { // GET request called when order placed with items in cart
+  router.get('/sms-restaurant', (req, res) => { // GET request called when order placed with items in cart
     if (req.session.user_id !== undefined) {
-      sendTextMessage(req.session.fname, req.session.lname, req.session.phone, cipher.encrypt(Date.now().toString().slice(7)));
+      const orderNum = cipher.encrypt(Date.now().toString().slice(7));
+      // sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum);
       res.send('Logged in.');
     } else {
       res.send('Not logged in.');
     }
   });
 
-  router.get('/sms2', (req, res) => { // GET request called when order placed without items in cart
+  router.get('/sms2-restaurant', (req, res) => { // GET request called when order placed without items in cart
     if (req.session.user_id !== undefined) {
       res.send('Logged in.');
     } else {
       res.send('Not logged in.');
     }
   });
+
+  // New ORDER
+
+  // const orderNum = cipher.encrypt(Date.now().toString().slice(7));
+  // const d = new Date();
+  // const currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+  // const newOrder = {
+  //   order_id: orderNum,
+  //   first_name: req.session.fname,
+  //   last_name: req.session.lname,
+  //   phone: req.session.phone,
+  //   time: currentTime,
+  //   prep: "undefined",
+  //   status: "New"
+  // };
+  // createNewOrder(newOrder);
 
   return router;
 };

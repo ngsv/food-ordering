@@ -2,7 +2,7 @@
 
 // Navbar scripts - social media icons
 
-$(document).ready(function () {
+$(document).ready(function() {
 
   document.getElementById('facebook-btn').onclick = function() {
     window.open('https://www.facebook.com/', '_blank');

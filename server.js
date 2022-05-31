@@ -44,11 +44,13 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const navigationRoutes = require("./routes/navigation");
 const menuRoutes = require("./routes/menu");
+const adminRoutes = require("./routes/admin");
 
 // Mount all resource routes
 app.use("/", usersRoutes(db));
 app.use("/", navigationRoutes);
 app.use("/", menuRoutes(db));
+app.use("/", adminRoutes);
 
 // Home page
 app.get("/", (req, res) => {
