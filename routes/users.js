@@ -2,16 +2,17 @@
 
 const express = require('express');
 const router = express.Router();
-const { getUserWithId } = require('../db/queries.js')
+const { getUserWithId } = require('../db/queries.js');
 
 module.exports = (db) => {
 
-  router.get('/login/:id', (req, res) => {
-    const queryParams = [req.params.id];
+  router.get('/login/:username', (req, res) => {
+    const queryParams = [req.params.username];
     getUserWithId(queryParams)
       .then(function(user) {
         if (user !== null) {
-          req.session.user_id = req.params.id;
+          req.session.user_id = user['id'];
+          req.session.username = req.params.username;
           req.session.fname = user['first_name'];
           req.session.lname = user['last_name'];
           req.session.phone = user['phone_number'];

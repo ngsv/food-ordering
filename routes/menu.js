@@ -4,6 +4,7 @@ const express = require('express');
 const router  = express.Router();
 const { getAllMenuItems } = require('../db/queries.js');
 const { sendTextRestaurant, sendTextCustomer } = require('../api/twilio.js');
+const { newOrder } = require('../db/queries.js');
 // const createNewOrder = require('../public/scripts/queue.js');
 const fpe = require('node-fpe');
 const cipher = fpe({ secret: process.env.FPE_SECRET });
@@ -20,11 +21,6 @@ module.exports = (db) => {
           desserts: menu.desserts,
           beverages: menu.beverages,
           user: {
-            user_id: req.session.user_id,
-            first_name: req.session.fname,
-            last_name: req.session.lname,
-            phone: req.session.phone,
-            email: req.session.email,
             is_admin: req.session.is_admin
           }
         };
@@ -33,9 +29,11 @@ module.exports = (db) => {
   });
 
   router.get('/sms-restaurant', (req, res) => { // GET request called when order placed with items in cart
-    if (req.session.user_id !== undefined) {
+    if (req.session.username !== undefined) {
       const orderNum = cipher.encrypt(Date.now().toString().slice(7));
       // sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum);
+      const queryParams = [orderNum, req.session.user_id, "12:00", 20, 1099];
+      newOrder(queryParams);
       res.send('Logged in.');
     } else {
       res.send('Not logged in.');
@@ -43,7 +41,7 @@ module.exports = (db) => {
   });
 
   router.get('/sms2-restaurant', (req, res) => { // GET request called when order placed without items in cart
-    if (req.session.user_id !== undefined) {
+    if (req.session.username !== undefined) {
       res.send('Logged in.');
     } else {
       res.send('Not logged in.');

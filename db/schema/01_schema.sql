@@ -20,9 +20,10 @@ CREATE TABLE users (
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
+  order_id INTEGER,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  order_time TIMESTAMP,
-  prep_time TIMESTAMP,
+  order_time VARCHAR(32),
+  prep_time INTEGER,
   total_amount DECIMAL,
   is_complete BOOLEAN DEFAULT FALSE
 );

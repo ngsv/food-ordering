@@ -7,11 +7,6 @@ const router = express.Router();
 router.get('/story', (req, res) => {
   const templateVars = {
     user: {
-      user_id: req.session.user_id,
-      first_name: req.session.fname,
-      last_name: req.session.lname,
-      phone: req.session.phone,
-      email: req.session.email,
       is_admin: req.session.is_admin
     }
   };
@@ -21,11 +16,6 @@ router.get('/story', (req, res) => {
 router.get('/faq', (req, res) => {
   const templateVars = {
     user: {
-      user_id: req.session.user_id,
-      first_name: req.session.fname,
-      last_name: req.session.lname,
-      phone: req.session.phone,
-      email: req.session.email,
       is_admin: req.session.is_admin
     }
   };
@@ -35,11 +25,6 @@ router.get('/faq', (req, res) => {
 router.get('/contact', (req, res) => {
   const templateVars = {
     user: {
-      user_id: req.session.user_id,
-      first_name: req.session.fname,
-      last_name: req.session.lname,
-      phone: req.session.phone,
-      email: req.session.email,
       is_admin: req.session.is_admin
     }
   };
@@ -49,11 +34,6 @@ router.get('/contact', (req, res) => {
 router.get('/thank-you', (req, res) => {
   const templateVars = {
     user: {
-      user_id: req.session.user_id,
-      first_name: req.session.fname,
-      last_name: req.session.lname,
-      phone: req.session.phone,
-      email: req.session.email,
       is_admin: req.session.is_admin
     }
   };

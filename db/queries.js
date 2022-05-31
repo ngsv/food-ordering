@@ -2,7 +2,7 @@ const { Pool } = require("pg");
 const dbParams = require("../lib/db.js");
 const db = new Pool(dbParams);
 
-// Get all menu items from the database.
+// ---------------------------------------- Get all menu items from the database ----------------------------------------
 const getAllMenuItems = () => {
   const query = `
     SELECT *
@@ -48,7 +48,7 @@ const getAllMenuItems = () => {
     .catch(err => console.log(err.message));
 };
 
-// Get a single user from the database given their user id.
+// ---------------------------------------- Get a single user from the database given their user id ----------------------------------------
 const getUserWithId = (queryParams) => {
   const query = `
     SELECT *
@@ -60,7 +60,7 @@ const getUserWithId = (queryParams) => {
     .query(query, queryParams)
     .then(data => {
       const user = data.rows;
-      if (user.length === 1) {
+      if (user.length === 1) { // Should return only 1 user
         return user[0];
       } else {
         return null;
@@ -69,7 +69,38 @@ const getUserWithId = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
+// ---------------------------------------- Store an order to the database ----------------------------------------
+const newOrder = (queryParams) => {
+  const query = `
+    INSERT INTO orders (order_id, user_id, order_time, prep_time, total_amount)
+    VALUES ($1, $2, $3, $4, $5)
+    `;
+  return db
+    .query(query, queryParams)
+    .then(data => {
+      // console.log(data);
+    })
+    .catch(err => console.log(err.message));
+};
+
+// ---------------------------------------- Load all orders from the database ----------------------------------------
+const loadOrders = () => {
+  const query = `
+    SELECT *
+    FROM orders
+    JOIN users ON orders.user_id = users.id
+  `;
+  return db
+    .query(query)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => console.log(err.message));
+};
+
 module.exports = {
   getAllMenuItems,
-  getUserWithId
+  getUserWithId,
+  newOrder,
+  loadOrders
 };
