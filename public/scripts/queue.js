@@ -38,12 +38,15 @@ $(document).ready(function() {
       prepTime: prepTime
     };
     buttonClicked.parentElement.parentElement.parentElement.remove();
+
     $.ajax({
       url: '/accept-order',
       method: 'POST',
       data: data
     })
       .fail(err => console.log(err.message));
+
+    $('#current-orders').load(location.href + " #current-orders"); // Refresh current orders div
   };
 
   // Event listener for when the prep time is changed for a new order in the queue

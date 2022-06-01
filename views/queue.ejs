@@ -66,16 +66,18 @@
       <% }) %>
 
       <h2>Current Orders</h2>
-      <% currentOrders.forEach(currentOrder => { %>
-        <div class="table-row"> <!-- table-row is a bootstrap class -->
-          <span class="row-id"><%= currentOrder['order_id'] %></span>
-          <span class="row-customer"><%= currentOrder['first_name']%> <%= currentOrder['last_name'] %></span>
-          <span class="row-phone"><%= currentOrder['phone_number'] %></span>
-          <span class="row-time"><%= currentOrder['order_time'] %></span>
-          <span class="row-prepTime"><%= currentOrder['prep_time'] %></span>
-          <span class="row-status"><%= currentOrder['status'] %></span>
-        </div>
-      <% }) %>
+      <div id="current-orders">
+        <% currentOrders.forEach(currentOrder => { %>
+          <div class="table-row"> <!-- table-row is a bootstrap class -->
+            <span class="row-id"><%= currentOrder['order_id'] %></span>
+            <span class="row-customer"><%= currentOrder['first_name']%> <%= currentOrder['last_name'] %></span>
+            <span class="row-phone"><%= currentOrder['phone_number'] %></span>
+            <span class="row-time"><%= currentOrder['order_time'] %></span>
+            <span class="row-prepTime"><%= currentOrder['prep_time'] %></span>
+            <span class="row-status"><%= currentOrder['status'] %></span>
+          </div>
+        <% }) %>
+      </div>
 
     </div>
 

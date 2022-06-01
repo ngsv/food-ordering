@@ -1,14 +1,18 @@
 body {
+  min-height: 100%;
   #table {
-    position: absolute;
-    top: 150px;
-    left: 5vw;
+    position: relative;
+    margin: 150px auto 50px;
     width: 90vw;
-    min-height: 80vh;
+    overflow: auto;
     background: rgba(255, 255, 255, .9); // White background with 95% opacity
-    // filter: brightness(98%);
     text-align: center;
     border-radius: 15px;
+
+    #current-orders {
+      display: block;
+      margin-bottom: 15px;
+    }
 
     h2 {
       font-family: 'Lora', serif;
@@ -60,5 +64,6 @@ body {
         }
       }
     }
+
   }
 }
