@@ -98,7 +98,7 @@ const loadOrders = () => {
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Delete an order from the database ----------------------------------------
+// ---------------------------------------- Delete an order from the database given the order id ----------------------------------------
 const deleteOrder = (queryParams) => {
   const query = `
     DELETE FROM orders
@@ -106,9 +106,20 @@ const deleteOrder = (queryParams) => {
   `;
   return db
     .query(query, queryParams)
-    .then(data => {
-      console.log(data);
-    })
+    .then(data => console.log(data))
+    .catch(err => console.log(err.message));
+};
+
+// ---------------------------------------- Delete an order from the database ----------------------------------------
+const acceptOrder = (queryParams) => {
+  const query = `
+    UPDATE orders
+    SET prep_time = $2
+    WHERE order_id = $1
+  `;
+  return db
+    .query(query, queryParams)
+    .then(data => console.log(data))
     .catch(err => console.log(err.message));
 };
 
@@ -117,5 +128,6 @@ module.exports = {
   getUserWithId,
   newOrder,
   loadOrders,
-  deleteOrder
+  deleteOrder,
+  acceptOrder
 };

@@ -25,6 +25,7 @@ CREATE TABLE orders (
   order_time VARCHAR(32),
   prep_time INTEGER,
   total_amount DECIMAL,
+  status VARCHAR(32) DEFAULT 'New',
   is_complete BOOLEAN DEFAULT FALSE
 );
 

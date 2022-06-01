@@ -120,12 +120,18 @@ $(document).ready(function() {
     let buttonClicked = event.target;
     let cartItems = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-menu-items')[0];
     let cartRows = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-row');
+    let totalCost = buttonClicked.parentElement.parentElement.getElementsByClassName('total')[0].innerText;
+    console.log(totalCost);
+    let data = {
+      totalCost: totalCost
+    };
 
     if (cartRows.length !== 0) { // Checks if there are items in the cart
       // GET route in menu.js
       $.ajax({
         url: '/sms-restaurant',
-        method: 'GET'
+        method: 'POST',
+        data: data
       })
         .done((results) => {
           if (results === "Logged in.") {

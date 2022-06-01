@@ -15,22 +15,32 @@ $(document).ready(function() {
     let buttonClicked = event.target;
     let order = buttonClicked.parentElement.parentElement.parentElement;
     let orderNum = order.getElementsByClassName('row-id')[0].innerText;
+    let data = {
+      orderNum: orderNum
+    };
+    buttonClicked.parentElement.parentElement.parentElement.remove();
     $.ajax({
       url: '/cancel-order',
       method: 'POST',
-      data: orderNum
+      data: data
     })
-      .done(() => {
-        // $("table").load(" #table");
-        // $.ajax({
-        //   url: '/cancel-order',
-        //   method: 'GET'
-        // })
-        //   .done((results) => {
-        //
-        //   })
-        //   .fail(err => console.log(err.message));
-      })
+      .fail(err => console.log(err.message));
+  };
+
+  const acceptOrder = (event) => {
+    let buttonClicked = event.target;
+    let order = buttonClicked.parentElement.parentElement.parentElement;
+    let orderNum = order.getElementsByClassName('row-id')[0].innerText;
+    let prepTime = order.getElementsByClassName('prepTime-input')[0].value;
+    let data = {
+      orderNum: orderNum,
+      prepTime: prepTime
+    };
+    $.ajax({
+      url: '/accept-order',
+      method: 'POST',
+      data: data
+    })
       .fail(err => console.log(err.message));
   };
 
@@ -46,6 +56,13 @@ $(document).ready(function() {
   for (let i = 0; i < cancelOrderButtons.length; i++) {
     let button = cancelOrderButtons[i];
     button.addEventListener('click', cancelOrder);
+  }
+
+// Event listener for when an accept order button is clicked
+  const acceptOrderButtons = document.querySelectorAll('.table-row .submit-btn');
+  for (let i = 0; i < acceptOrderButtons.length; i++) {
+    let button = acceptOrderButtons[i];
+    button.addEventListener('click', acceptOrder);
   }
 
 });

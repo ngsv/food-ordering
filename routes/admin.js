@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { loadOrders, deleteOrder } = require('../db/queries.js');
+const { loadOrders, deleteOrder, acceptOrder } = require('../db/queries.js');
 
 router.get('/queue', (req, res) => {
   if (req.session.is_admin === true) {
@@ -20,24 +20,30 @@ router.get('/queue', (req, res) => {
 });
 
 router.post('/cancel-order', (req, res) => {
-  const orderId = Object.keys(req.body);
+  const orderId = [req.body.orderNum];
   deleteOrder(orderId);
 });
 
-router.get('/cancel-order', (req, res) => {
-  if (req.session.is_admin === true) {
-    loadOrders()
-      .then(function(orders) {
-        const templateVars = {
-          orders: orders,
-          user: {
-            is_admin: req.session.is_admin
-          }
-        };
-        res.render('queue', templateVars);
-      });
-  }
+router.post('/accept-order', (req, res) => {
+  const orderId = req.body.orderNum;
+  const prepTime = req.body.prepTime;
+  acceptOrder([orderId, prepTime]);
 });
+
+// router.get('/cancel-order', (req, res) => {
+//   if (req.session.is_admin === true) {
+//     loadOrders()
+//       .then(function(orders) {
+//         const templateVars = {
+//           orders: orders,
+//           user: {
+//             is_admin: req.session.is_admin
+//           }
+//         };
+//         res.render('queue', templateVars);
+//       });
+//   }
+// });
 
 module.exports = router;
 
