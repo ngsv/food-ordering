@@ -120,8 +120,7 @@ $(document).ready(function() {
     let buttonClicked = event.target;
     let cartItems = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-menu-items')[0];
     let cartRows = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-row');
-    let totalCost = buttonClicked.parentElement.parentElement.getElementsByClassName('total')[0].innerText;
-    console.log(totalCost);
+    let totalCost = buttonClicked.parentElement.parentElement.getElementsByClassName('total')[0].innerText; // Get the total cost of the cart
     let data = {
       totalCost: totalCost
     };

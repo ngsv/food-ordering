@@ -98,6 +98,38 @@ const loadOrders = () => {
     .catch(err => console.log(err.message));
 };
 
+// ---------------------------------------- Load all new orders from the database ----------------------------------------
+const loadNewOrders = () => {
+  const query = `
+    SELECT *
+    FROM orders
+    JOIN users ON orders.user_id = users.id
+    WHERE orders.status = 'New'
+  `;
+  return db
+    .query(query)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => console.log(err.message));
+};
+
+// ---------------------------------------- Load all current (in progress) orders from the database ----------------------------------------
+const loadCurrentOrders = () => {
+  const query = `
+    SELECT *
+    FROM orders
+    JOIN users ON orders.user_id = users.id
+    WHERE orders.status = 'In Progress'
+  `;
+  return db
+    .query(query)
+    .then(data => {
+      return data.rows;
+    })
+    .catch(err => console.log(err.message));
+};
+
 // ---------------------------------------- Delete an order from the database given the order id ----------------------------------------
 const deleteOrder = (queryParams) => {
   const query = `
@@ -110,11 +142,11 @@ const deleteOrder = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Delete an order from the database ----------------------------------------
+// ---------------------------------------- Update an order from the database onced it has been accepted by the restaurant ----------------------------------------
 const acceptOrder = (queryParams) => {
   const query = `
     UPDATE orders
-    SET prep_time = $2
+    SET prep_time = $2, status = 'In Progress'
     WHERE order_id = $1
   `;
   return db
@@ -128,6 +160,8 @@ module.exports = {
   getUserWithId,
   newOrder,
   loadOrders,
+  loadNewOrders,
+  loadCurrentOrders,
   deleteOrder,
   acceptOrder
 };

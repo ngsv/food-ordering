@@ -27,6 +27,7 @@ $(document).ready(function() {
       .fail(err => console.log(err.message));
   };
 
+  // Accepts a new order placed
   const acceptOrder = (event) => {
     let buttonClicked = event.target;
     let order = buttonClicked.parentElement.parentElement.parentElement;
@@ -36,6 +37,7 @@ $(document).ready(function() {
       orderNum: orderNum,
       prepTime: prepTime
     };
+    buttonClicked.parentElement.parentElement.parentElement.remove();
     $.ajax({
       url: '/accept-order',
       method: 'POST',
