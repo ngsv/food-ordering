@@ -1,46 +1,51 @@
-/* eslint-env jquery */
-
-// $(document).ready(function() {
-//   const createNewOrder = (order) => {
-//     const $order = $(`
-//       <div class="table-row">
-//         <span class="row-id">${order.order_id}</span>
-//         <span class="row-customer">${order.first_name} ${order.last_name}</span>
-//         <span class="row-phone">${order.phone}</span>
-//         <span class="row-time">${order.time}</span>
-//         <span class="row-prepTime">${order.prep}</span>
-//         <span class="row-status">${order.status}</span>
-//       </div>
-//       `);
-//     $('#table').append($order);
-//   };
-//   module.exports = createNewOrder;
-// });
-
 $(document).ready(function() {
-  const createNewOrder = (order) => {
-    const $order = $(`
-      <div class="table-row">
-        <span class="row-id">${order.order_id}</span>
-        <span class="row-customer">${order.first_name} ${order.last_name}</span>
-        <span class="row-phone">${order.phone}</span>
-        <span class="row-time">${order.time}</span>
-        <span class="row-prepTime">${order.prep}</span>
-        <span class="row-status">${order.status}</span>
-      </div>
-      `);
-    $('#table').append($order);
+
+  // Update queue prep time input for new orders
+  const quantityChanged = (event) => {
+    let quantityElement = event.target;
+    if (isNaN(quantityElement.value) || quantityElement.value <= 0) {
+      quantityElement.value = 1;
+    } else if (quantityElement.value > 90) {
+      quantityElement.value = 90;
+    }
   };
 
-  const newOrder = {
-    order_id: "123456",
-    first_name: "Steven",
-    last_name: "Ngov",
-    phone: "647-718-1094",
-    time: "4:00",
-    prep: 20,
-    status: "New"
+  // Cancels a new order placed
+  const cancelOrder = (event) => {
+    let buttonClicked = event.target;
+    let order = buttonClicked.parentElement.parentElement.parentElement;
+    let orderNum = order.getElementsByClassName('row-id')[0].innerText;
+    $.ajax({
+      url: '/cancel-order',
+      method: 'POST',
+      data: orderNum
+    })
+      .done(() => {
+        // $("table").load(" #table");
+        // $.ajax({
+        //   url: '/cancel-order',
+        //   method: 'GET'
+        // })
+        //   .done((results) => {
+        //
+        //   })
+        //   .fail(err => console.log(err.message));
+      })
+      .fail(err => console.log(err.message));
   };
 
-  createNewOrder(newOrder);
+  // Event listener for when the prep time is changed for a new order in the queue
+  const quantityFields = document.getElementsByClassName('prepTime-input');
+  for (let i = 0; i < quantityFields.length; i++) {
+    let quantityField = quantityFields[i];
+    quantityField.addEventListener('change', quantityChanged);
+  }
+
+  // Event listener for when a cancel order button is clicked
+  const cancelOrderButtons = document.querySelectorAll('.table-row .cancel-btn');
+  for (let i = 0; i < cancelOrderButtons.length; i++) {
+    let button = cancelOrderButtons[i];
+    button.addEventListener('click', cancelOrder);
+  }
+
 });

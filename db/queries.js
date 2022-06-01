@@ -72,13 +72,13 @@ const getUserWithId = (queryParams) => {
 // ---------------------------------------- Store an order to the database ----------------------------------------
 const newOrder = (queryParams) => {
   const query = `
-    INSERT INTO orders (order_id, user_id, order_time, prep_time, total_amount)
-    VALUES ($1, $2, $3, $4, $5)
+    INSERT INTO orders (order_id, user_id, order_time, total_amount)
+    VALUES ($1, $2, $3, $4)
     `;
   return db
     .query(query, queryParams)
     .then(data => {
-      // console.log(data);
+      console.log(data);
     })
     .catch(err => console.log(err.message));
 };
@@ -98,9 +98,24 @@ const loadOrders = () => {
     .catch(err => console.log(err.message));
 };
 
+// ---------------------------------------- Delete an order from the database ----------------------------------------
+const deleteOrder = (queryParams) => {
+  const query = `
+    DELETE FROM orders
+    WHERE order_id = $1
+  `;
+  return db
+    .query(query, queryParams)
+    .then(data => {
+      console.log(data);
+    })
+    .catch(err => console.log(err.message));
+};
+
 module.exports = {
   getAllMenuItems,
   getUserWithId,
   newOrder,
-  loadOrders
+  loadOrders,
+  deleteOrder
 };

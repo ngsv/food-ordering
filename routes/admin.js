@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { loadOrders } = require('../db/queries.js');
+const { loadOrders, deleteOrder } = require('../db/queries.js');
 
 router.get('/queue', (req, res) => {
   if (req.session.is_admin === true) {
@@ -9,11 +9,6 @@ router.get('/queue', (req, res) => {
         const templateVars = {
           orders: orders,
           user: {
-            username: req.session.username,
-            first_name: req.session.fname,
-            last_name: req.session.lname,
-            phone: req.session.phone,
-            email: req.session.email,
             is_admin: req.session.is_admin
           }
         };
@@ -21,6 +16,26 @@ router.get('/queue', (req, res) => {
       });
   } else {
     res.send("403 Forbidden");
+  }
+});
+
+router.post('/cancel-order', (req, res) => {
+  const orderId = Object.keys(req.body);
+  deleteOrder(orderId);
+});
+
+router.get('/cancel-order', (req, res) => {
+  if (req.session.is_admin === true) {
+    loadOrders()
+      .then(function(orders) {
+        const templateVars = {
+          orders: orders,
+          user: {
+            is_admin: req.session.is_admin
+          }
+        };
+        res.render('queue', templateVars);
+      });
   }
 });
 

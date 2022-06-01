@@ -5,7 +5,6 @@ const router  = express.Router();
 const { getAllMenuItems } = require('../db/queries.js');
 const { sendTextRestaurant, sendTextCustomer } = require('../api/twilio.js');
 const { newOrder } = require('../db/queries.js');
-// const createNewOrder = require('../public/scripts/queue.js');
 const fpe = require('node-fpe');
 const cipher = fpe({ secret: process.env.FPE_SECRET });
 
@@ -31,8 +30,11 @@ module.exports = (db) => {
   router.get('/sms-restaurant', (req, res) => { // GET request called when order placed with items in cart
     if (req.session.username !== undefined) {
       const orderNum = cipher.encrypt(Date.now().toString().slice(7));
+      const d = new Date();
+      // const currentTime = d.getHours() + ":" + d.getMinutes();
+      const currentTime = d.toLocaleTimeString();
       // sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum);
-      const queryParams = [orderNum, req.session.user_id, "12:00", 20, 1099];
+      const queryParams = [orderNum, req.session.user_id, currentTime, 1099];
       newOrder(queryParams);
       res.send('Logged in.');
     } else {
@@ -47,22 +49,6 @@ module.exports = (db) => {
       res.send('Not logged in.');
     }
   });
-
-  // New ORDER
-
-  // const orderNum = cipher.encrypt(Date.now().toString().slice(7));
-  // const d = new Date();
-  // const currentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-  // const newOrder = {
-  //   order_id: orderNum,
-  //   first_name: req.session.fname,
-  //   last_name: req.session.lname,
-  //   phone: req.session.phone,
-  //   time: currentTime,
-  //   prep: "undefined",
-  //   status: "New"
-  // };
-  // createNewOrder(newOrder);
 
   return router;
 };

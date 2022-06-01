@@ -23,7 +23,7 @@ body {
 
     .table-headers {
       display: grid;
-      grid-template-columns: 10% 20% 20% 10% 10% 30%;
+      grid-template-columns: 10% 25% 20% 15% 15% 15%;
       grid-template-rows: 1fr; // 1 row
       margin: 8px 20px 8px 20px;
       font-family: 'Lora', serif;
@@ -32,11 +32,27 @@ body {
 
     .table-row {
       display: grid;
-      grid-template-columns: 10% 20% 20% 10% 10% 30%;
+      grid-template-columns: 10% 25% 20% 15% 15% 15%;
       grid-template-rows: 1fr; // 1 row
       margin: 8px 20px;
       font-family: 'Lora', serif;
       border: none;
+
+      .row-prepTime {
+        .prepTime-input {
+          width: 50%;
+        }
+        .submit-btn {
+          border: none;
+          background-color: transparent;
+          color: green;
+        }
+        .cancel-btn {
+          border: none;
+          background-color: transparent;
+          color: red;
+        }
+      }
     }
   }
 }
