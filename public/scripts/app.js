@@ -124,21 +124,23 @@ $(document).ready(function() {
     console.log(cartRows[0]);
 
     // Store the order items into an array of objects
-    let orderItems = [];
+    let orderItemsArray = [];
 
     for (let i = 0; i < cartRows.length; i++) {
       let cartRow = cartRows[i];
       let item = cartRow.getElementsByClassName('cart-item')[0].innerText;
       let quantity = cartRow.getElementsByClassName('cart-quantity-input')[0].value;
+      let price = cartRow.getElementsByClassName('cart-price')[0].innerText;
       let newItem = {
         item: item,
-        quantity: quantity
+        quantity: quantity,
+        price: price
       };
-      orderItems.push(newItem);
+      orderItemsArray.push(newItem);
     }
 
     let data = {
-      orderItems: orderItems,
+      orderItemsArray: orderItemsArray,
       totalCost: totalCost
     };
 

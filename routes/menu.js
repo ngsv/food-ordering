@@ -3,6 +3,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getAllMenuItems } = require('../db/queries.js');
+const { getUserOrder } = require('../db/queries.js'); //Test
 const { sendTextRestaurant } = require('../api/twilio.js');
 const { newOrder } = require('../db/queries.js');
 const fpe = require('node-fpe');
@@ -34,11 +35,12 @@ module.exports = (db) => {
       const d = new Date();
       const currentTime = d.toLocaleTimeString();
       const totalCost = parseFloat(req.body.totalCost.slice(2) * 100);
-      const orderItems = req.body.orderItems;
+      const orderItemsArray = req.body.orderItemsArray;
       // console.log(orderItems);
       // sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum);
-      const queryParams = [orderNum, userId, currentTime, totalCost, orderItems];
+      const queryParams = [orderNum, userId, currentTime, totalCost, orderItemsArray];
       newOrder(queryParams);
+      // getUserOrder([orderNum]); //Test
       res.send('Logged in.');
     } else {
       res.send('Not logged in.');

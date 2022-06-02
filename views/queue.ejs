@@ -52,20 +52,40 @@
 
       <h2>New Orders</h2>
       <% newOrders.forEach(newOrder => { %>
-        <div class="table-row"> <!-- table-row is a bootstrap class -->
-          <button class="expand-order-btn" type="button" name="button"><i class="fa-solid fa-arrow-down"></i></button>
-          <span class="row-id"><%= newOrder['order_id'] %></span>
-          <span class="row-customer"><%= newOrder['first_name']%> <%= newOrder['last_name'] %></span>
-          <span class="row-phone"><%= newOrder['phone_number'] %></span>
-          <span class="row-time"><%= newOrder['order_time'] %></span>
-          <span class="row-prepTime">
-            <input class="prepTime-input" type="number">
-            <button class="submit-btn" type="button"><i class="fa-solid fa-circle-check"></i></button>
-            <button class="cancel-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
-          </span>
-          <span class="row-status"><%= newOrder['status'] %></span>
+        <div class="">
+          <div class="table-row"> <!-- table-row is a bootstrap class -->
+            <button class="expand-order-btn" type="button" name="button"><i class="fa-solid fa-arrow-down"></i></button>
+            <span class="row-id"><%= newOrder['order_id'] %></span>
+            <span class="row-customer"><%= newOrder['first_name']%> <%= newOrder['last_name'] %></span>
+            <span class="row-phone"><%= newOrder['phone_number'] %></span>
+            <span class="row-time"><%= newOrder['order_time'] %></span>
+            <span class="row-prepTime">
+              <input class="prepTime-input" type="number">
+              <button class="submit-btn" type="button"><i class="fa-solid fa-circle-check"></i></button>
+              <button class="cancel-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
+            </span>
+            <span class="row-status"><%= newOrder['status'] %></span>
+          </div>
           <div class="order-details">
-            
+            <div class="each-order-details-header">
+              <h3>Order Items</h3>
+              <h3>Quantity</h3>
+              <h3>Price</h3>
+            </div>
+            <% console.log(newOrder['order_items']); %>
+            <% let orderItems = newOrder['order_items']; %>
+            <% for (i = 0; i < orderItems.length; i++) { %>
+              <div class="each-order-details">
+                <span><%= orderItems[i].split('"')[3] %></span>
+                <span><%= orderItems[i].split('"')[7] %></span>
+                <span><%= orderItems[i].split('"')[11] %></span>
+                <span></span>
+              </div>
+            <% } %>
+            <div class="each-order-total">
+              <span>Total Price: </span>
+              <span>$ <%= newOrder['total_amount'] / 100 %></span>
+            </div>
           </div>
         </div>
       <% }) %>

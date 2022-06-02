@@ -60,20 +60,59 @@ body {
         margin: auto;
       }
 
+      .expand-order-btn > * {
+        pointer-events: none;
+      }
+
       .row-prepTime {
         .prepTime-input {
           width: 40px;
         }
-        .submit-btn {
+        .submit-btn { // Green submit button
           border: none;
           background-color: transparent;
           color: green;
         }
-        .cancel-btn {
+        .cancel-btn { // Red cancel button
           border: none;
           background-color: transparent;
           color: red;
         }
+      }
+    }
+
+    .order-details {
+      display: flex;
+      flex-direction: column;
+      background-color: #eef0df;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      .each-order-details-header {
+        display: grid;
+        grid-template-columns: 400px 80px 200px;
+        grid-template-rows: 1fr;
+
+        h3 {
+          font-family: 'Lora', serif;
+          font-weight: bold;
+          font-size: 1rem;
+        }
+      }
+
+      .each-order-details {
+        display: grid;
+        grid-template-columns: 400px 80px 200px;
+        grid-template-rows: 1fr;
+      }
+
+      .each-order-total {
+        display: grid;
+        grid-template-columns: 250px 300px;
+        grid-template-rows: 1fr;
+        margin-top: 20px;
+        justify-items: end;
+        font-weight: bold;
       }
     }
 
