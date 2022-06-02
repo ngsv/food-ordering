@@ -34,7 +34,7 @@ module.exports = (db) => {
       const d = new Date();
       const currentTime = d.toLocaleTimeString();
       const totalCost = parseFloat(req.body.totalCost.slice(2) * 100);
-      // sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum);
+      sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum);
       const queryParams = [orderNum, userId, currentTime, totalCost];
       newOrder(queryParams);
       res.send('Logged in.');

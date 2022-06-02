@@ -178,7 +178,9 @@ const getUserOrder = (queryParams) => {
   `;
   return db
     .query(query, queryParams)
-    .then(data => console.log(data))
+    .then(data => {
+      return data.rows;
+    })
     .catch(err => console.log(err.message));
 };
 
