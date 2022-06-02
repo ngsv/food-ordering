@@ -37,32 +37,37 @@ $(document).ready(function() {
       orderNum: orderNum,
       prepTime: prepTime
     };
-    buttonClicked.parentElement.parentElement.parentElement.remove();
 
-    $.ajax({
-      url: '/accept-order',
-      method: 'POST',
-      data: data
-    })
-      .done((results) => {
-        if (results) {
-          $('#current-orders').load(location.href + " #current-orders"); // Refresh current orders div (move the accepted order down to the current order section)
-          setTimeout(() => { // Wait the amount of minutes specified by the prep time, then update the order status and refresh the current orders div
-            $.ajax({
-              url: '/order-complete',
-              method: 'POST',
-              data: data
-            })
-              .done((results) => {
-                if (results) {
-                  $('#current-orders').load(location.href + " #current-orders"); // Refresh current orders div
-                }
-              })
-              .fail(err => console.log(err.message));
-          }, prepTime * 1000 * 60);
-        }
+    if (prepTime > 0) {
+      buttonClicked.parentElement.parentElement.parentElement.remove();
+
+      $.ajax({
+        url: '/accept-order',
+        method: 'POST',
+        data: data
       })
-      .fail(err => console.log(err.message));
+        .done((results) => {
+          if (results) {
+            $('#current-orders').load(location.href + " #current-orders"); // Refresh current orders div (move the accepted order down to the current order section)
+            setTimeout(() => { // Wait the amount of minutes specified by the prep time, then update the order status and refresh the current orders div
+              $.ajax({
+                url: '/order-complete',
+                method: 'POST',
+                data: data
+              })
+                .done((results) => {
+                  if (results) {
+                    $('#current-orders').load(location.href + " #current-orders"); // Refresh current orders div
+                  }
+                })
+                .fail(err => console.log(err.message));
+            }, prepTime * 1000 * 60);
+          }
+        })
+        .fail(err => console.log(err.message));
+    } else {
+      alert("Please specify a prep time.")
+    }
   };
 
   // Event listener for when the prep time is changed for a new order in the queue

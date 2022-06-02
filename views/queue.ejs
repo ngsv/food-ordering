@@ -40,6 +40,7 @@
 
     <div id="table">
       <div class="table-headers">
+        <span></span>
         <span class="header-id">Order ID</span>
         <span class="header-customer">Customer</span>
         <span class="header-phone">Phone</span>
@@ -52,6 +53,7 @@
       <h2>New Orders</h2>
       <% newOrders.forEach(newOrder => { %>
         <div class="table-row"> <!-- table-row is a bootstrap class -->
+          <button class="expand-order-btn" type="button" name="button"><i class="fa-solid fa-arrow-down"></i></button>
           <span class="row-id"><%= newOrder['order_id'] %></span>
           <span class="row-customer"><%= newOrder['first_name']%> <%= newOrder['last_name'] %></span>
           <span class="row-phone"><%= newOrder['phone_number'] %></span>
@@ -62,6 +64,9 @@
             <button class="cancel-btn" type="button"><i class="fa-solid fa-circle-xmark"></i></button>
           </span>
           <span class="row-status"><%= newOrder['status'] %></span>
+          <div class="order-details">
+
+          </div>
         </div>
       <% }) %>
 
@@ -69,6 +74,7 @@
       <div id="current-orders">
         <% currentOrders.forEach(currentOrder => { %>
           <div class="table-row"> <!-- table-row is a bootstrap class -->
+            <button class="expand-order-btn" type="button" name="button"><i class="fa-solid fa-arrow-down"></i></button>
             <span class="row-id"><%= currentOrder['order_id'] %></span>
             <span class="row-customer"><%= currentOrder['first_name']%> <%= currentOrder['last_name'] %></span>
             <span class="row-phone"><%= currentOrder['phone_number'] %></span>

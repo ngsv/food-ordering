@@ -42,7 +42,7 @@ router.post('/order-complete', (req, res) => {
   getUserOrder(orderId)
     .then(function(order) {
       console.log(order);
-      sendTextCustomer(order[0].first_name, order[0].last_name, order[0].phone_number, order[0].order_id);
+      // sendTextCustomer(order[0].first_name, order[0].last_name, order[0].phone_number, order[0].order_id);
     });
   res.send("Complete");
 });
