@@ -38,7 +38,7 @@ $(document).ready(function() {
       prepTime: prepTime
     };
 
-    if (prepTime > 0) {
+    if (prepTime > 0) { // Ensures a prep time of at least 1 minute
       buttonClicked.parentElement.parentElement.parentElement.remove();
 
       $.ajax({

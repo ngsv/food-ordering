@@ -72,8 +72,8 @@ const getUserWithId = (queryParams) => {
 // ---------------------------------------- Store an order to the database ----------------------------------------
 const newOrder = (queryParams) => {
   const query = `
-    INSERT INTO orders (order_id, user_id, order_time, total_amount)
-    VALUES ($1, $2, $3, $4)
+    INSERT INTO orders (order_id, user_id, order_time, total_amount, order_items)
+    VALUES ($1, $2, $3, $4, $5)
     `;
   return db
     .query(query, queryParams)

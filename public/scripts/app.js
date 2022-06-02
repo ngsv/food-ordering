@@ -121,7 +121,24 @@ $(document).ready(function() {
     let cartItems = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-menu-items')[0];
     let cartRows = buttonClicked.parentElement.parentElement.getElementsByClassName('cart-row');
     let totalCost = buttonClicked.parentElement.parentElement.getElementsByClassName('total')[0].innerText; // Get the total cost of the cart
+    console.log(cartRows[0]);
+
+    // Store the order items into an array of objects
+    let orderItems = [];
+
+    for (let i = 0; i < cartRows.length; i++) {
+      let cartRow = cartRows[i];
+      let item = cartRow.getElementsByClassName('cart-item')[0].innerText;
+      let quantity = cartRow.getElementsByClassName('cart-quantity-input')[0].value;
+      let newItem = {
+        item: item,
+        quantity: quantity
+      };
+      orderItems.push(newItem);
+    }
+
     let data = {
+      orderItems: orderItems,
       totalCost: totalCost
     };
 
@@ -137,7 +154,6 @@ $(document).ready(function() {
             alert('Your order has been placed. Thank you!');
 
             while (cartItems.hasChildNodes()) {
-              console.log(cartItems);
               cartItems.removeChild(cartItems.firstChild);
             }
           } else if (results === "Not logged in.") {
