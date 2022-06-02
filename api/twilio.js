@@ -18,7 +18,7 @@ const sendTextRestaurant = (firstName, lastName, phone, orderNum) => {
 const sendTextCustomer = (firstName, lastName, phone, orderNum) => {
   client.messages
     .create({
-      body: `Thank you ${firstName} ${lastName}, your order with Ayutthaya has been placed! Your order number is: ${orderNum}`,
+      body: `Thank you ${firstName} ${lastName}, your order with Ayutthaya is ready for pickup! Your order number is: ${orderNum}`,
       to: phone, // Text this number
       from: '+19704808780' // From a valid Twilio number
     })

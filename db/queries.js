@@ -155,6 +155,33 @@ const acceptOrder = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
+// ---------------------------------------- Update an order from the database onced it has been accepted by the restaurant ----------------------------------------
+const completeOrder = (queryParams) => {
+  const query = `
+    UPDATE orders
+    SET status = 'Complete'
+    WHERE order_id = $1
+  `;
+  return db
+    .query(query, queryParams)
+    .then(data => console.log(data))
+    .catch(err => console.log(err.message));
+};
+
+// ---------------------------------------- Get a single user from the database given their user id ----------------------------------------
+const getUserOrder = (queryParams) => {
+  const query = `
+    SELECT *
+    FROM orders
+    JOIN users ON users.id = orders.user_id
+    WHERE order_id = $1
+  `;
+  return db
+    .query(query, queryParams)
+    .then(data => console.log(data))
+    .catch(err => console.log(err.message));
+};
+
 module.exports = {
   getAllMenuItems,
   getUserWithId,
@@ -163,5 +190,7 @@ module.exports = {
   loadNewOrders,
   loadCurrentOrders,
   deleteOrder,
-  acceptOrder
+  acceptOrder,
+  completeOrder,
+  getUserOrder
 };

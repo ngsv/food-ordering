@@ -1,19 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { loadOrders, loadNewOrders, loadCurrentOrders, deleteOrder, acceptOrder } = require('../db/queries.js');
+const { loadNewOrders, loadCurrentOrders, deleteOrder, acceptOrder, completeOrder, getUserOrder } = require('../db/queries.js');
+const { sendTextCustomer } = require('../api/twilio.js');
 
 router.get('/queue', (req, res) => {
   if (req.session.is_admin === true) {
-    // loadOrders()
-    //   .then(function(orders) {
-    //     const templateVars = {
-    //       orders: orders,
-    //       user: {
-    //         is_admin: req.session.is_admin
-    //       }
-    //     };
-    //     res.render('queue', templateVars);
-    //   });
     loadNewOrders()
       .then(function(newOrders) {
         loadCurrentOrders()
@@ -42,21 +33,15 @@ router.post('/accept-order', (req, res) => {
   const orderId = req.body.orderNum;
   const prepTime = req.body.prepTime;
   acceptOrder([orderId, prepTime]);
+  res.send("Accepted");
 });
 
-// router.get('/cancel-order', (req, res) => {
-//   if (req.session.is_admin === true) {
-//     loadOrders()
-//       .then(function(orders) {
-//         const templateVars = {
-//           orders: orders,
-//           user: {
-//             is_admin: req.session.is_admin
-//           }
-//         };
-//         res.render('queue', templateVars);
-//       });
-//   }
-// });
+router.post('/order-complete', (req, res) => {
+  const orderId = [req.body.orderNum];
+  completeOrder(orderId);
+  getUserOrder(orderId);
+  // sendTextCustomer()
+  res.send("Complete");
+});
 
 module.exports = router;

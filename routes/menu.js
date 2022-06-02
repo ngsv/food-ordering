@@ -3,7 +3,7 @@
 const express = require('express');
 const router  = express.Router();
 const { getAllMenuItems } = require('../db/queries.js');
-const { sendTextRestaurant, sendTextCustomer } = require('../api/twilio.js');
+const { sendTextRestaurant } = require('../api/twilio.js');
 const { newOrder } = require('../db/queries.js');
 const fpe = require('node-fpe');
 const cipher = fpe({ secret: process.env.FPE_SECRET });
