@@ -60,6 +60,15 @@ body {
         margin: auto;
       }
 
+      .expand-order-btn.active i { // Rotate arrow when button is clicked
+        transform: rotate(-180deg);
+      }
+
+      i {
+        transition: transform 0.5s ease-in; // Animate arrow when clicked
+      }
+
+      // Ensures nothing within the button will have pointer events, clicks inside the button will always be for the button itself
       .expand-order-btn > * {
         pointer-events: none;
       }

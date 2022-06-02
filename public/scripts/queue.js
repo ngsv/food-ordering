@@ -2,6 +2,14 @@ $(document).ready(function() {
 
   $(".order-details").hide(); // Hide the order details initially
 
+  // When order details button is clicked
+  const faqs = document.querySelectorAll('.faq');
+  faqs.forEach(faq => {
+    faq.addEventListener('click', () => {
+      faq.classList.toggle('active');
+    });
+  });
+
   // Update queue prep time input for new orders
   const quantityChanged = (event) => {
     let quantityElement = event.target;
@@ -76,16 +84,16 @@ $(document).ready(function() {
   const orderDetails = (event) => {
     let buttonClicked = event.target;
     let tableRow = buttonClicked.parentElement.parentElement;
-    let orderDetailsButton = tableRow.getElementsByClassName('expand-order-btn')[0];
-    let orderDetails = tableRow.getElementsByClassName('order-details')[0];
     console.log(tableRow);
-    console.log(orderDetailsButton);
-    console.log(orderDetails);
+    // let orderDetailsButton = tableRow.getElementsByClassName('expand-order-btn')[0];
+    let orderDetails = tableRow.getElementsByClassName('order-details')[0];
     if ($(orderDetails).is(":visible")) {
       $(orderDetails).slideUp(400);
     } else {
       $(orderDetails).slideDown(400);
     }
+
+    buttonClicked.classList.toggle('active');
   };
 
   // Event listener for when the prep time is changed for a new order in the queue
