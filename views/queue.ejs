@@ -52,7 +52,7 @@
 
       <h2>New Orders</h2>
       <% newOrders.forEach(newOrder => { %>
-        <div class="">
+        <div class="table-rows">
           <div class="table-row"> <!-- table-row is a bootstrap class -->
             <button class="expand-order-btn" type="button" name="button"><i class="fa-solid fa-arrow-down"></i></button>
             <span class="row-id"><%= newOrder['order_id'] %></span>
@@ -84,7 +84,7 @@
             <% } %>
             <div class="each-order-total">
               <span>Total Price: </span>
-              <span>$ <%= newOrder['total_amount'] / 100 %></span>
+              <span>$ <%= (newOrder['total_amount']/100).toFixed(2) %></span>
             </div>
           </div>
         </div>
@@ -93,14 +93,37 @@
       <h2>Current Orders</h2>
       <div id="current-orders">
         <% currentOrders.forEach(currentOrder => { %>
-          <div class="table-row"> <!-- table-row is a bootstrap class -->
-            <button class="expand-order-btn" type="button" name="button"><i class="fa-solid fa-arrow-down"></i></button>
-            <span class="row-id"><%= currentOrder['order_id'] %></span>
-            <span class="row-customer"><%= currentOrder['first_name']%> <%= currentOrder['last_name'] %></span>
-            <span class="row-phone"><%= currentOrder['phone_number'] %></span>
-            <span class="row-time"><%= currentOrder['order_time'] %></span>
-            <span class="row-prepTime"><%= currentOrder['prep_time'] %></span>
-            <span class="row-status"><%= currentOrder['status'] %></span>
+          <div class="table-rows">
+            <div class="table-row"> <!-- table-row is a bootstrap class -->
+              <button class="expand-order-btn" type="button" name="button"><i class="fa-solid fa-arrow-down"></i></button>
+              <span class="row-id"><%= currentOrder['order_id'] %></span>
+              <span class="row-customer"><%= currentOrder['first_name']%> <%= currentOrder['last_name'] %></span>
+              <span class="row-phone"><%= currentOrder['phone_number'] %></span>
+              <span class="row-time"><%= currentOrder['order_time'] %></span>
+              <span class="row-prepTime"><%= currentOrder['prep_time'] %></span>
+              <span class="row-status"><%= currentOrder['status'] %></span>
+            </div>
+            <div class="order-details">
+              <div class="each-order-details-header">
+                <h3>Order Items</h3>
+                <h3>Quantity</h3>
+                <h3>Price</h3>
+              </div>
+              <% console.log(currentOrder['order_items']); %>
+              <% let orderItems = currentOrder['order_items']; %>
+              <% for (i = 0; i < orderItems.length; i++) { %>
+                <div class="each-order-details">
+                  <span><%= orderItems[i].split('"')[3] %></span>
+                  <span><%= orderItems[i].split('"')[7] %></span>
+                  <span><%= orderItems[i].split('"')[11] %></span>
+                  <span></span>
+                </div>
+              <% } %>
+              <div class="each-order-total">
+                <span>Total Price: </span>
+                <span>$ <%= (currentOrder['total_amount']/100).toFixed(2) %></span>
+              </div>
+            </div>
           </div>
         <% }) %>
       </div>

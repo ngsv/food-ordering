@@ -1,17 +1,10 @@
 $(document).ready(function() {
 
-  $(".order-details").hide(); // Hide the order details initially
-
-  // When order details button is clicked
-  const faqs = document.querySelectorAll('.faq');
-  faqs.forEach(faq => {
-    faq.addEventListener('click', () => {
-      faq.classList.toggle('active');
-    });
-  });
+  // $(".order-details").hide(); // Hide the order details initially
 
   // Update queue prep time input for new orders
   const quantityChanged = (event) => {
+    event.stopPropagation();
     let quantityElement = event.target;
     if (isNaN(quantityElement.value) || quantityElement.value <= 0) {
       quantityElement.value = 1;
@@ -22,13 +15,17 @@ $(document).ready(function() {
 
   // Cancels a new order placed
   const cancelOrder = (event) => {
+    event.stopPropagation();
     let buttonClicked = event.target;
     let order = buttonClicked.parentElement.parentElement.parentElement;
+    let tableRows = buttonClicked.closest('.table-rows');
     let orderNum = order.getElementsByClassName('row-id')[0].innerText;
     let data = {
       orderNum: orderNum
     };
-    buttonClicked.parentElement.parentElement.parentElement.remove();
+    // order.remove();
+    tableRows.remove();
+
     $.ajax({
       url: '/cancel-order',
       method: 'POST',
@@ -39,8 +36,10 @@ $(document).ready(function() {
 
   // Accepts a new order placed
   const acceptOrder = (event) => {
+    event.stopPropagation();
     let buttonClicked = event.target;
     let order = buttonClicked.parentElement.parentElement.parentElement;
+    let tableRows = buttonClicked.closest('.table-rows');
     let orderNum = order.getElementsByClassName('row-id')[0].innerText;
     let prepTime = order.getElementsByClassName('prepTime-input')[0].value;
     let data = {
@@ -49,7 +48,8 @@ $(document).ready(function() {
     };
 
     if (prepTime > 0) { // Ensures a prep time of at least 1 minute
-      buttonClicked.parentElement.parentElement.parentElement.remove();
+      // buttonClicked.parentElement.parentElement.parentElement.remove();
+      tableRows.remove();
 
       $.ajax({
         url: '/accept-order',
@@ -82,18 +82,14 @@ $(document).ready(function() {
 
   // Slides order details up and down when button is clicked
   const orderDetails = (event) => {
+    event.stopPropagation();
     let buttonClicked = event.target;
     let tableRow = buttonClicked.parentElement.parentElement;
+    let orderDetail = tableRow.getElementsByClassName('order-details')[0];
     console.log(tableRow);
-    // let orderDetailsButton = tableRow.getElementsByClassName('expand-order-btn')[0];
-    let orderDetails = tableRow.getElementsByClassName('order-details')[0];
-    if ($(orderDetails).is(":visible")) {
-      $(orderDetails).slideUp(400);
-    } else {
-      $(orderDetails).slideDown(400);
-    }
-
+    // console.log(orderDetail);
     buttonClicked.classList.toggle('active');
+    orderDetail.classList.toggle('active');
   };
 
   // Event listener for when the prep time is changed for a new order in the queue
@@ -121,7 +117,9 @@ $(document).ready(function() {
   const orderDetailButtons = document.querySelectorAll('.table-row .expand-order-btn');
   for (let i = 0; i < orderDetailButtons.length; i++) {
     let button = orderDetailButtons[i];
-    button.addEventListener('click', orderDetails);
+    // $('#table').on('click', '.expand-order-btn', orderDetails);
+    // $(document).on('click', '.expand-order-btn', orderDetails);
+    // button.addEventListener('click', orderDetails);
   }
-
+  $(document).on('click', '.expand-order-btn', orderDetails);
 });

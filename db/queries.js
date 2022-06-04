@@ -146,7 +146,7 @@ const deleteOrder = (queryParams) => {
 const acceptOrder = (queryParams) => {
   const query = `
     UPDATE orders
-    SET prep_time = $2, status = 'In Progress'
+    SET prep_time = $2, status = 'In Progress', time_stamp = NOW()::TIMESTAMP
     WHERE order_id = $1
   `;
   return db

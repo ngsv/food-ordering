@@ -36,11 +36,9 @@ module.exports = (db) => {
       const currentTime = d.toLocaleTimeString();
       const totalCost = parseFloat(req.body.totalCost.slice(2) * 100);
       const orderItemsArray = req.body.orderItemsArray;
-      // console.log(orderItems);
       // sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum);
       const queryParams = [orderNum, userId, currentTime, totalCost, orderItemsArray];
       newOrder(queryParams);
-      // getUserOrder([orderNum]); //Test
       res.send('Logged in.');
     } else {
       res.send('Not logged in.');
