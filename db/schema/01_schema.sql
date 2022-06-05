@@ -60,7 +60,7 @@ RETURNS TRIGGER AS $$
 BEGIN
   UPDATE orders
   SET status = 'Complete'
-  WHERE time_stamp < NOW() - INTERVAL '1 minute';
+  WHERE time_stamp < NOW() - prep_time * INTERVAL '1 minute';
   RETURN NEW;
 END;
 $$ LANGUAGE PLPGSQL;
