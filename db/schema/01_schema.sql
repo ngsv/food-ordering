@@ -49,24 +49,3 @@ CREATE TABLE order_items (
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
   menu_item_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE
 );
-
--- -- Drop triggers and functions
--- DROP TRIGGER IF EXISTS trigger_update_old_rows ON orders;
--- DROP FUNCTION IF EXISTS update_old_rows();
---
--- -- Function to update rows from the orders table once prep time has elapsed
--- CREATE OR REPLACE FUNCTION update_old_rows()
--- RETURNS TRIGGER AS $$
--- BEGIN
---   UPDATE orders
---   SET status = 'Complete'
---   WHERE time_stamp < NOW() - prep_time * INTERVAL '1 minute';
---   RETURN NEW;
--- END;
--- $$ LANGUAGE PLPGSQL;
--- 
--- -- Triggers function when a new order is accepted
--- CREATE TRIGGER trigger_update_old_rows
--- AFTER UPDATE OF prep_time ON orders
--- FOR EACH ROW
--- EXECUTE PROCEDURE update_old_rows();

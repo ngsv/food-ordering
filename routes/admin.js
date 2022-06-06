@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { loadNewOrders, loadCurrentOrders, deleteOrder, acceptOrder, completeOrder, pickupOrder, getReadyOrders } = require('../db/queries.js');
-const { sendTextCustomer } = require('../api/twilio.js');
+const { sendTextCustomer, sendCancelText } = require('../api/twilio.js');
 
 router.get('/queue', (req, res) => {
   if (req.session.is_admin === true) {
@@ -44,6 +44,7 @@ router.get('/reload', (req, res) => {
 // Deletes an order from the database - POST request called when an order is cancelled
 router.post('/cancel-order', (req, res) => {
   const orderId = [req.body.orderNum];
+  sendCancelText(req.session.fname, req.session.lname, req.session.phone, orderId);
   deleteOrder(orderId);
 });
 
