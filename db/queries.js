@@ -141,7 +141,7 @@ const acceptOrder = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Update an order from the database (change status from 'In Progress' to 'Completed') ----------------------------------------
+// ---------------------------------------- Update an order from the database (change status from 'Pick-up Ready' to 'Completed') ----------------------------------------
 const completeOrder = (queryParams) => {
   const query = `
     UPDATE orders
@@ -150,35 +150,32 @@ const completeOrder = (queryParams) => {
   `;
   return db
     .query(query, queryParams)
-    .then(data => console.log(data))
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Update all orders from the database (change status from 'In Progress' to 'Completed') if prep time has elapsed ----------------------------------------
-const completeOrderTimestamp = () => {
+// ---------------------------------------- Update all orders from the database (change status from 'In Progress' to 'Pick-up Ready') if prep time has elapsed ----------------------------------------
+const pickupOrder = () => {
   const query = `
     UPDATE orders
-    SET status = 'Complete'
-    WHERE time_stamp < NOW() - prep_time * INTERVAL '1 minute'
+    SET status = 'Pick-up Ready'
+    WHERE time_stamp < NOW() - prep_time * INTERVAL '1 minute' AND status = 'In Progress'
   `;
   return db
     .query(query)
-    .then(data => console.log(data))
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Get a single user from the database given their order id ----------------------------------------
-const getUserOrder = (queryParams) => {
+// ---------------------------------------- Get all orders that are ready for pick-up from the database ----------------------------------------
+const getReadyOrders = () => {
   const query = `
     SELECT *
     FROM orders
     JOIN users ON users.id = orders.user_id
-    WHERE order_id = $1
+    WHERE status = 'Pick-up Ready'
   `;
   return db
-    .query(query, queryParams)
-    .then(data => {
-      console.log(data.rows);
+    .query(query)
+    .then((data) => {
       return data.rows;
     })
     .catch(err => console.log(err.message));
@@ -193,6 +190,6 @@ module.exports = {
   deleteOrder,
   acceptOrder,
   completeOrder,
-  completeOrderTimestamp,
-  getUserOrder
+  pickupOrder,
+  getReadyOrders
 };

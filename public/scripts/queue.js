@@ -1,5 +1,8 @@
+// Scripts for queue page
+
 $(document).ready(function() {
 
+  // Update order from 'In Progress' to 'Completed' if prep time has elapsed since order was accepted
   const reload = () => {
     $.ajax({
       url: '/reload',
@@ -7,21 +10,22 @@ $(document).ready(function() {
     })
       .done((results) => {
         if (results) {
-          $('#current-orders').load(location.href + " #current-orders");
+          $('#current-orders').load(location.href + " #current-orders"); // Refresh Current Orders div
         }
       })
       .fail(err => console.log(err.message));
   };
 
-  setInterval(reload, 60000); //60000 MS == 60 seconds
+  reload(); // Call on page load
+  setInterval(reload, 60000); //60000 ms == 60 seconds
 
   // Update queue prep time input for new orders
   const quantityChanged = (event) => {
     event.stopPropagation();
     let quantityElement = event.target;
-    if (isNaN(quantityElement.value) || quantityElement.value <= 0) {
+    if (isNaN(quantityElement.value) || quantityElement.value <= 0) { // Ensure quantity minimum is 1
       quantityElement.value = 1;
-    } else if (quantityElement.value > 90) {
+    } else if (quantityElement.value > 90) { // Ensure quantity maximum is 90
       quantityElement.value = 90;
     }
   };
@@ -36,8 +40,9 @@ $(document).ready(function() {
     let data = {
       orderNum: orderNum
     };
-    tableRows.remove();
+    tableRows.remove(); // Remove the row from the New Orders div for the order that was cancelled
 
+    // Sends the order number so the order can be deleted in the databse
     $.ajax({
       url: '/cancel-order',
       method: 'POST',
@@ -60,8 +65,9 @@ $(document).ready(function() {
     };
 
     if (prepTime > 0) { // Ensures a prep time of at least 1 minute
-      tableRows.remove();
+      tableRows.remove(); // Remove the row from the New Orders div for the order that was accepted
 
+      // Sends the order number and prep time so the status can be updated in the database
       $.ajax({
         url: '/accept-order',
         method: 'POST',
@@ -70,24 +76,11 @@ $(document).ready(function() {
         .done((results) => {
           if (results) {
             $('#current-orders').load(location.href + " #current-orders"); // Refresh current orders div (move the accepted order down to the current order section)
-            setTimeout(() => { // Wait the amount of minutes specified by the prep time, then update the order status and refresh the current orders div
-              $.ajax({
-                url: '/order-complete',
-                method: 'POST',
-                data: data
-              })
-                .done((results) => {
-                  if (results) {
-                    $('#current-orders').load(location.href + " #current-orders"); // Refresh current orders div
-                  }
-                })
-                .fail(err => console.log(err.message));
-            }, prepTime * 1000 * 60);
           }
         })
         .fail(err => console.log(err.message));
     } else {
-      alert("Please specify a prep time.")
+      alert("Please specify a prep time.");
     }
   };
 
@@ -98,8 +91,8 @@ $(document).ready(function() {
     let tableRow = buttonClicked.parentElement.parentElement;
     let orderDetail = tableRow.getElementsByClassName('order-details')[0];
     console.log(tableRow);
-    buttonClicked.classList.toggle('active');
-    orderDetail.classList.toggle('active');
+    buttonClicked.classList.toggle('active'); // Toggles button class for animations
+    orderDetail.classList.toggle('active'); // Toggles order details div for animations
   };
 
   // Event listener for when the prep time is changed for a new order in the queue

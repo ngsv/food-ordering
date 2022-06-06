@@ -25,7 +25,18 @@ const sendTextCustomer = (firstName, lastName, phone, orderNum) => {
     .catch((err) => console.log(err));
 };
 
+const sendCancelText = (firstName, lastName, phone, orderNum) => {
+  client.messages
+    .create({
+      body: `Hello ${firstName} ${lastName}. I regret to inform you that we are currently unable to process your order (order number: ${orderNum}). Please place a new order or contact our customer support`,
+      to: phone,
+      from: '+19704808780' // From a valid Twilio number
+    })
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   sendTextRestaurant,
-  sendTextCustomer
+  sendTextCustomer,
+  sendCancelText
 };

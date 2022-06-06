@@ -13,3 +13,4 @@
 - GET /faq
 - GET /menu
 - GET /contact
+- GET /queue

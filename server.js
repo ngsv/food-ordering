@@ -47,9 +47,9 @@ const menuRoutes = require("./routes/menu");
 const adminRoutes = require("./routes/admin");
 
 // Mount all resource routes
-app.use("/", usersRoutes(db));
+app.use("/", usersRoutes);
 app.use("/", navigationRoutes);
-app.use("/", menuRoutes(db));
+app.use("/", menuRoutes);
 app.use("/", adminRoutes);
 
 // Home page

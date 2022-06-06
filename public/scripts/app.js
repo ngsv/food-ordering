@@ -1,8 +1,10 @@
 /* eslint-env jquery */
 
+// Scripts for menu page
+
 $(document).ready(function() {
 
-  // Event listener for when remove cart item button is clicked
+  // Removes item from cart when button is clicked
   const removeCartItem = (event) => {
     let buttonClicked = event.target;
     buttonClicked.parentElement.parentElement.parentElement.remove();
@@ -10,19 +12,19 @@ $(document).ready(function() {
     updateCartBadge();
   };
 
-  // Event listener for when the quantity is changed for an item in the cart
+  // Changes the quantity for an itme in the cart
   const quantityChanged = (event) => {
     let quantityElement = event.target;
-    if (isNaN(quantityElement.value) || quantityElement.value <= 0) {
+    if (isNaN(quantityElement.value) || quantityElement.value <= 0) { // Ensures quantity minimum is 1
       quantityElement.value = 1;
-    } else if (quantityElement.value > 20) {
+    } else if (quantityElement.value > 20) { // Ensures quantity maximum is 20
       quantityElement.value = 20;
     }
     updateCartTotal();
     updateCartBadge();
   };
 
-  // Event listener for when the add to cart button is clicked
+  // --------------------------------------------------- Adds a menu item to the cart ---------------------------------------------------
   const addToCart = (event) => {
     let buttonClicked = event.target;
     let menuItem = buttonClicked.parentElement.parentElement.parentElement;
@@ -37,7 +39,7 @@ $(document).ready(function() {
   // Create a new row in cart and adds the item to the cart
   const addItemToCart = (item, price) => {
 
-    let cartRow = document.createElement('div');
+    let cartRow = document.createElement('div'); // Creates a new cart row
     cartRow.classList.add('cart-row');
     let cartItems = document.getElementsByClassName('cart-menu-items')[0]; // cart-menu-items is the container that holds all the cart-row divs
 
@@ -77,6 +79,7 @@ $(document).ready(function() {
     let tax = 0;
     let total = 0;
 
+    // Loops through cart and sums the price
     for (let i = 0; i < cartRows.length; i++) {
       const cartRow = cartRows[i];
       const priceElement = cartRow.getElementsByClassName('cart-price')[0];
@@ -104,6 +107,7 @@ $(document).ready(function() {
 
     let totalQuantity = 0;
 
+    // Loops through cart to count the total number of items in the cart
     for (let i = 0; i < cartRows.length; i++) {
       const cartRow = cartRows[i];
       const quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
@@ -114,7 +118,7 @@ $(document).ready(function() {
     cartBadge.innerText = totalQuantity;
   };
 
-  // Event listener for when submit order button is clicked
+  // Creates a new order when the submit order button is clicked
   const createOrder = (event) => {
 
     let buttonClicked = event.target;
@@ -155,6 +159,7 @@ $(document).ready(function() {
           if (results === "Logged in.") {
             alert('Your order has been placed. Thank you!');
 
+            // Clears the cart once order is submitted
             while (cartItems.hasChildNodes()) {
               cartItems.removeChild(cartItems.firstChild);
             }
@@ -184,28 +189,28 @@ $(document).ready(function() {
 
   // ----------------------------------------------------------------------
 
-  // Remove item from cart
+  // Event listener for when remove item from cart button is clicked
   const removeCartItemButtons = document.getElementsByClassName('cart-quantity-btn');
   for (let i = 0; i < removeCartItemButtons.length; i++) {
     let button = removeCartItemButtons[i];
     button.addEventListener('click', removeCartItem);
   }
 
-  // Update cart item quantity
+  // Event listener for when cart item quantity is changed
   const quantityFields = document.getElementsByClassName('cart-quantity-input');
   for (let i = 0; i < quantityFields.length; i++) {
     let quantityField = quantityFields[i];
     quantityField.addEventListener('change', quantityChanged);
   }
 
-  // Add item to cart
+  // Event listener for when add item to cart button is clicked
   const addToCartButtons = document.getElementsByClassName('add-to-cart');
   for (let i = 0; i < addToCartButtons.length; i++) {
     let button = addToCartButtons[i];
     button.addEventListener('click', addToCart);
   }
 
-  // Submit order
+  // Event listener for when submit order button is clicked
   document.querySelectorAll('.submit-order-btn button')[0].addEventListener('click', createOrder);
 
 });
