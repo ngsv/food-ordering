@@ -14,6 +14,8 @@ Ayutthaya is a full stack web application built with Node, Express, AJAX, jQuery
 
 !["FAQ"](https://github.com/ngsv/food-ordering/blob/master/docs/faq.png?raw=true)
 
+!["Queue"](https://github.com/ngsv/food-ordering/blob/master/docs/queue.png?raw=true)
+
 ## Dependencies
 
 - Node 10.x or above
