@@ -1,6 +1,19 @@
 $(document).ready(function() {
 
-  // $(".order-details").hide(); // Hide the order details initially
+  const reload = () => {
+    $.ajax({
+      url: '/reload',
+      method: 'GET',
+    })
+      .done((results) => {
+        if (results) {
+          $('#current-orders').load(location.href + " #current-orders");
+        }
+      })
+      .fail(err => console.log(err.message));
+  };
+
+  setInterval(reload, 60000); //60000 MS == 60 seconds
 
   // Update queue prep time input for new orders
   const quantityChanged = (event) => {
@@ -23,7 +36,6 @@ $(document).ready(function() {
     let data = {
       orderNum: orderNum
     };
-    // order.remove();
     tableRows.remove();
 
     $.ajax({
@@ -48,7 +60,6 @@ $(document).ready(function() {
     };
 
     if (prepTime > 0) { // Ensures a prep time of at least 1 minute
-      // buttonClicked.parentElement.parentElement.parentElement.remove();
       tableRows.remove();
 
       $.ajax({
@@ -87,7 +98,6 @@ $(document).ready(function() {
     let tableRow = buttonClicked.parentElement.parentElement;
     let orderDetail = tableRow.getElementsByClassName('order-details')[0];
     console.log(tableRow);
-    // console.log(orderDetail);
     buttonClicked.classList.toggle('active');
     orderDetail.classList.toggle('active');
   };
@@ -114,12 +124,5 @@ $(document).ready(function() {
   }
 
   // Event listener for when an order details button is clicked
-  const orderDetailButtons = document.querySelectorAll('.table-row .expand-order-btn');
-  for (let i = 0; i < orderDetailButtons.length; i++) {
-    let button = orderDetailButtons[i];
-    // $('#table').on('click', '.expand-order-btn', orderDetails);
-    // $(document).on('click', '.expand-order-btn', orderDetails);
-    // button.addEventListener('click', orderDetails);
-  }
   $(document).on('click', '.expand-order-btn', orderDetails);
 });

@@ -69,7 +69,7 @@ const getUserWithId = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Store an order to the database ----------------------------------------
+// ---------------------------------------- Create a new order and store it to the database ----------------------------------------
 const newOrder = (queryParams) => {
   const query = `
     INSERT INTO orders (order_id, user_id, order_time, total_amount, order_items)
@@ -83,20 +83,6 @@ const newOrder = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Load all orders from the database ----------------------------------------
-const loadOrders = () => {
-  const query = `
-    SELECT *
-    FROM orders
-    JOIN users ON orders.user_id = users.id
-  `;
-  return db
-    .query(query)
-    .then(data => {
-      return data.rows;
-    })
-    .catch(err => console.log(err.message));
-};
 
 // ---------------------------------------- Load all new orders from the database ----------------------------------------
 const loadNewOrders = () => {
@@ -142,7 +128,7 @@ const deleteOrder = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Update an order from the database onced it has been accepted by the restaurant ----------------------------------------
+// ---------------------------------------- Update an order from the database (change status from 'New' to 'In Progress') ----------------------------------------
 const acceptOrder = (queryParams) => {
   const query = `
     UPDATE orders
@@ -155,7 +141,7 @@ const acceptOrder = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Update an order from the database onced it has been accepted by the restaurant ----------------------------------------
+// ---------------------------------------- Update an order from the database (change status from 'In Progress' to 'Completed') ----------------------------------------
 const completeOrder = (queryParams) => {
   const query = `
     UPDATE orders
@@ -168,7 +154,20 @@ const completeOrder = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
-// ---------------------------------------- Get a single user from the database given their user id ----------------------------------------
+// ---------------------------------------- Update all orders from the database (change status from 'In Progress' to 'Completed') if prep time has elapsed ----------------------------------------
+const completeOrderTimestamp = () => {
+  const query = `
+    UPDATE orders
+    SET status = 'Complete'
+    WHERE time_stamp < NOW() - prep_time * INTERVAL '1 minute'
+  `;
+  return db
+    .query(query)
+    .then(data => console.log(data))
+    .catch(err => console.log(err.message));
+};
+
+// ---------------------------------------- Get a single user from the database given their order id ----------------------------------------
 const getUserOrder = (queryParams) => {
   const query = `
     SELECT *
@@ -189,11 +188,11 @@ module.exports = {
   getAllMenuItems,
   getUserWithId,
   newOrder,
-  loadOrders,
   loadNewOrders,
   loadCurrentOrders,
   deleteOrder,
   acceptOrder,
   completeOrder,
+  completeOrderTimestamp,
   getUserOrder
 };

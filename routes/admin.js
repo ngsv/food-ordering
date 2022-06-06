@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { loadNewOrders, loadCurrentOrders, deleteOrder, acceptOrder, completeOrder, getUserOrder } = require('../db/queries.js');
+const { loadNewOrders, loadCurrentOrders, deleteOrder, acceptOrder, completeOrder, completeOrderTimestamp, getUserOrder } = require('../db/queries.js');
 const { sendTextCustomer } = require('../api/twilio.js');
 
 router.get('/queue', (req, res) => {
@@ -22,6 +22,11 @@ router.get('/queue', (req, res) => {
   } else {
     res.send("403 Forbidden");
   }
+});
+
+router.get('/reload', (req, res) => {
+  completeOrderTimestamp();
+  res.send("Complete");
 });
 
 router.post('/cancel-order', (req, res) => {
