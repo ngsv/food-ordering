@@ -46,6 +46,7 @@
         <span class="header-customer">Customer</span>
         <span class="header-phone">Phone</span>
         <span class="header-time">Order Time</span>
+        <span class="header-order-time">Order Accepted</span>
         <span class="header-prepTime">Prep Time</span>
         <span class="header-status">Status</span>
       </div>
@@ -60,6 +61,7 @@
             <span class="row-customer"><%= newOrder['first_name']%> <%= newOrder['last_name'] %></span>
             <span class="row-phone"><%= newOrder['phone_number'] %></span>
             <span class="row-time"><%= newOrder['order_time'] %></span>
+            <span class="row-accepted-time"></span>
             <span class="row-prepTime">
               <input class="prepTime-input" type="number">
               <button class="submit-btn" type="button"><i class="fa-solid fa-circle-check"></i></button>
@@ -101,6 +103,7 @@
               <span class="row-customer"><%= currentOrder['first_name']%> <%= currentOrder['last_name'] %></span>
               <span class="row-phone"><%= currentOrder['phone_number'] %></span>
               <span class="row-time"><%= currentOrder['order_time'] %></span>
+              <span class="row-accepted-time"><%= currentOrder['order_accepted_time'] %></span>
               <span class="row-prepTime"><%= currentOrder['prep_time'] %></span>
               <span class="row-status"><%= currentOrder['status'] %></span>
             </div>

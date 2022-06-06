@@ -35,7 +35,7 @@ router.get('/reload', (req, res) => {
         const lastName = orders[i]['last_name'];
         const phoneNum = orders[i]['phone_number'];
         completeOrder([orderNum]);
-        sendTextCustomer(firstName, lastName, phoneNum, orderNum);
+        // sendTextCustomer(firstName, lastName, phoneNum, orderNum);
       }
     });
   res.send("Complete");
@@ -44,7 +44,7 @@ router.get('/reload', (req, res) => {
 // Deletes an order from the database - POST request called when an order is cancelled
 router.post('/cancel-order', (req, res) => {
   const orderId = [req.body.orderNum];
-  sendCancelText(req.session.fname, req.session.lname, req.session.phone, orderId);
+  // sendCancelText(req.session.fname, req.session.lname, req.session.phone, orderId);
   deleteOrder(orderId);
 });
 
@@ -52,7 +52,9 @@ router.post('/cancel-order', (req, res) => {
 router.post('/accept-order', (req, res) => {
   const orderId = req.body.orderNum;
   const prepTime = req.body.prepTime;
-  acceptOrder([orderId, prepTime]);
+  const d = new Date();
+  const currentTime = d.toLocaleTimeString();
+  acceptOrder([orderId, prepTime, currentTime]);
   res.send("Accepted");
 });
 

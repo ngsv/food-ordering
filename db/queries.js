@@ -132,7 +132,7 @@ const deleteOrder = (queryParams) => {
 const acceptOrder = (queryParams) => {
   const query = `
     UPDATE orders
-    SET prep_time = $2, status = 'In Progress', time_stamp = NOW()::TIMESTAMP
+    SET prep_time = $2, status = 'In Progress', time_stamp = NOW()::TIMESTAMP, order_accepted_time = $3
     WHERE order_id = $1
   `;
   return db
