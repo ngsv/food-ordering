@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-  // Update order from 'In Progress' to 'Completed' if prep time has elapsed since order was accepted
+  // -------------------- Update order from 'In Progress' to 'Completed' if prep time has elapsed since order was accepted --------------------
   const reload = () => {
     $.ajax({
       url: '/reload',
@@ -17,9 +17,9 @@ $(document).ready(function() {
   };
 
   reload(); // Call on page load
-  setInterval(reload, 60000); //60000 ms == 60 seconds
+  setInterval(reload, 60000); //60000 ms == 60 seconds (auto-refreshes page every 60 seconds)
 
-  // Update queue prep time input for new orders
+  // --------------------------------------- Update queue prep time input for new orders ---------------------------------------
   const quantityChanged = (event) => {
     event.stopPropagation();
     let quantityElement = event.target;
@@ -30,19 +30,26 @@ $(document).ready(function() {
     }
   };
 
-  // Cancels a new order placed
+  // ----------------------------------------------- Cancels a new order placed -----------------------------------------------
   const cancelOrder = (event) => {
     event.stopPropagation();
     let buttonClicked = event.target;
     let order = buttonClicked.parentElement.parentElement.parentElement;
     let tableRows = buttonClicked.closest('.table-rows');
     let orderNum = order.getElementsByClassName('row-id')[0].innerText;
+    let name = order.getElementsByClassName('row-customer')[0].innerText;
+    const fName = name.split(" ")[0];
+    const lName = name.split(" ")[1];
+    const phone = order.getElementsByClassName('row-phone')[0].innerText;
     let data = {
-      orderNum: orderNum
+      orderNum: orderNum,
+      fName: fName,
+      lName: lName,
+      phone: phone
     };
     tableRows.remove(); // Remove the row from the New Orders div for the order that was cancelled
 
-    // Sends the order number so the order can be deleted in the databse
+    // Sends the order number so the order can be deleted in the database
     $.ajax({
       url: '/cancel-order',
       method: 'POST',
@@ -51,7 +58,7 @@ $(document).ready(function() {
       .fail(err => console.log(err.message));
   };
 
-  // Accepts a new order placed
+  // ----------------------------------------------- Accepts a new order placed -----------------------------------------------
   const acceptOrder = (event) => {
     event.stopPropagation();
     let buttonClicked = event.target;
@@ -84,7 +91,7 @@ $(document).ready(function() {
     }
   };
 
-  // Slides order details up and down when button is clicked
+  // ----------------------------------------------- Slides order details up and down when button is clicked -----------------------------------------------
   const orderDetails = (event) => {
     event.stopPropagation();
     let buttonClicked = event.target;

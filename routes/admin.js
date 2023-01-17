@@ -35,16 +35,16 @@ router.get('/reload', (req, res) => {
         const lastName = orders[i]['last_name'];
         const phoneNum = orders[i]['phone_number'];
         completeOrder([orderNum]);
-        // sendTextCustomer(firstName, lastName, phoneNum, orderNum);
+        sendTextCustomer(firstName, lastName, phoneNum, orderNum);
       }
     });
   res.send("Complete");
 });
 
-// Deletes an order from the database - POST request called when an order is cancelled
+// Deletes an order from the database and sends a text message to the customer - POST request called when an order is cancelled
 router.post('/cancel-order', (req, res) => {
   const orderId = [req.body.orderNum];
-  // sendCancelText(req.session.fname, req.session.lname, req.session.phone, orderId);
+  sendCancelText(req.body.fName, req.body.lName, req.body.phone, req.body.orderNum);
   deleteOrder(orderId);
 });
 

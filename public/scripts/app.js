@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
 
-  // Removes item from cart when button is clicked
+  // ---------------------------- Removes item from cart when button is clicked ----------------------------
   const removeCartItem = (event) => {
     let buttonClicked = event.target;
     buttonClicked.parentElement.parentElement.parentElement.remove();
@@ -12,7 +12,7 @@ $(document).ready(function() {
     updateCartBadge();
   };
 
-  // Changes the quantity for an itme in the cart
+  // ---------------------------- Changes the quantity for an item in the cart ----------------------------
   const quantityChanged = (event) => {
     let quantityElement = event.target;
     if (isNaN(quantityElement.value) || quantityElement.value <= 0) { // Ensures quantity minimum is 1
@@ -24,7 +24,7 @@ $(document).ready(function() {
     updateCartBadge();
   };
 
-  // --------------------------------------------------- Adds a menu item to the cart ---------------------------------------------------
+  // ------------------------------------ Adds a menu item to the cart ------------------------------------
   const addToCart = (event) => {
     let buttonClicked = event.target;
     let menuItem = buttonClicked.parentElement.parentElement.parentElement;
@@ -36,7 +36,7 @@ $(document).ready(function() {
     updateCartBadge();
   };
 
-  // Create a new row in cart and adds the item to the cart
+  // ----------------------- Create a new row in cart and adds the item to the cart -----------------------
   const addItemToCart = (item, price) => {
 
     let cartRow = document.createElement('div'); // Creates a new cart row
@@ -69,7 +69,7 @@ $(document).ready(function() {
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged);
   };
 
-  // Update cart total
+  // ------------------------------------------------- Update cart total -------------------------------------------------
   const updateCartTotal = () => {
 
     const cartItemContainer = document.getElementsByClassName('cart-items')[0]; // .getElementsByClassName returns an array
@@ -99,7 +99,7 @@ $(document).ready(function() {
     document.getElementsByClassName('total')[0].innerText = '$ ' + total;
   };
 
-  // Update cart badge
+  // ------------------------------------------------- Update cart badge -------------------------------------------------
   const updateCartBadge = () => {
     const cartItemContainer = document.getElementsByClassName('cart-items')[0];
     const cartRows = cartItemContainer.getElementsByClassName('cart-row');
@@ -118,7 +118,7 @@ $(document).ready(function() {
     cartBadge.innerText = totalQuantity;
   };
 
-  // Creates a new order when the submit order button is clicked
+  // ---------------------------- Creates a new order when the submit order button is clicked ----------------------------
   const createOrder = (event) => {
 
     let buttonClicked = event.target;
@@ -213,4 +213,4 @@ $(document).ready(function() {
   // Event listener for when submit order button is clicked
   document.querySelectorAll('.submit-order-btn button')[0].addEventListener('click', createOrder);
 
-});
+}); // document ready

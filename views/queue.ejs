@@ -75,10 +75,11 @@
               <h3>Quantity</h3>
               <h3>Price</h3>
             </div>
-            <% console.log(newOrder['order_items']); %>
+            <!-- <% console.log(newOrder['order_items']); %> -->
             <% let orderItems = newOrder['order_items']; %>
             <% for (i = 0; i < orderItems.length; i++) { %>
               <div class="each-order-details">
+                <!-- e.g. [ '{"item":"Fresh Spring Rolls","quantity":"1","price":"$ 9.99"}' ] -->
                 <span><%= orderItems[i].split('"')[3] %></span>
                 <span><%= orderItems[i].split('"')[7] %></span>
                 <span><%= orderItems[i].split('"')[11] %></span>
@@ -113,7 +114,7 @@
                 <h3>Quantity</h3>
                 <h3>Price</h3>
               </div>
-              <% console.log(currentOrder['order_items']); %>
+              <!-- <% console.log(currentOrder['order_items']); %> -->
               <% let orderItems = currentOrder['order_items']; %>
               <% for (i = 0; i < orderItems.length; i++) { %>
                 <div class="each-order-details">

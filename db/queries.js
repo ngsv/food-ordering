@@ -83,6 +83,7 @@ const newOrder = (queryParams) => {
     .catch(err => console.log(err.message));
 };
 
+// -------------------------------------- Below queries are all for admin (queue) page --------------------------------------
 
 // ---------------------------------------- Load all new orders from the database ----------------------------------------
 const loadNewOrders = () => {

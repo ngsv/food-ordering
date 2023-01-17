@@ -11,7 +11,7 @@ const sendTextRestaurant = (firstName, lastName, phone, orderNum) => {
     .create({
       body: `A new order has been placed by ${firstName} ${lastName}, order number: ${orderNum}.`,
       to: '+16477181094',
-      from: '+19704808780'
+      from: '+17743522902'
     })
     .catch((err) => console.log(err));
 };
@@ -22,7 +22,7 @@ const sendTextCustomer = (firstName, lastName, phone, orderNum) => {
     .create({
       body: `Thank you ${firstName} ${lastName}, your order with Ayutthaya is ready for pickup! Your order number is: ${orderNum}.`,
       to: phone, // Text this number
-      from: '+19704808780' // From a valid Twilio number
+      from: '+17743522902' // From a valid Twilio number
     })
     .catch((err) => console.log(err));
 };
@@ -33,7 +33,7 @@ const sendCancelText = (firstName, lastName, phone, orderNum) => {
     .create({
       body: `Hello ${firstName} ${lastName}. I regret to inform you that we are currently unable to process your order (order number: ${orderNum}). Please place a new order or contact our customer support.`,
       to: phone,
-      from: '+19704808780' // From a valid Twilio number
+      from: '+17743522902' // From a valid Twilio number
     })
     .catch((err) => console.log(err));
 };

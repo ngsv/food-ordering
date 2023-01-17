@@ -1,17 +1,16 @@
 {
-  "name": "node-skeleton",
+  "name": "Food Ordering App - Ayutthaya",
   "version": "1.0.0",
-  "description": "",
+  "description": "A food ordering experience for a single restaurant",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "local": "./node_modules/.bin/nodemon -L --ignore public/",
-    "local2": "npx nodemon server -L --ignore public/",
+    "local": "nodemon server -L --ignore public/",
     "db:reset": "node bin/resetdb.js",
-    "sass-watch": "sass --watch styles:public/styles"
+    "sass-watch": "sass styles:public/styles --watch --poll --no-source-map"
   },
-  "author": "Lighthouse Labs",
+  "author": "Steven Ngov",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",

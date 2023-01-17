@@ -35,6 +35,6 @@ Ayutthaya is a full stack web application built with Node, Express, AJAX, jQuery
 ## Getting Started
 
 1. Install all dependencies (using the `npm install` command).
-2. Rest database using the `npm run db:reset` command.
-3. Run the development web server using the `npm run local2` command.
+2. Reset database using the `npm run db:reset` command.
+3. Run the development web server using the `npm run local` command.
 4. The app will be served at <http://localhost:8080/>.
