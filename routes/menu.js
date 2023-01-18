@@ -36,7 +36,7 @@ router.post('/sms-restaurant', (req, res) => {
     const currentTime = d.toLocaleTimeString();
     const totalCost = parseFloat(req.body.totalCost.slice(2) * 100);
     const orderItemsArray = req.body.orderItemsArray;
-    // sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum); // Sends text message to the restaurant when a new order is placed
+    sendTextRestaurant(req.session.fname, req.session.lname, req.session.phone, orderNum); // Sends text message to the restaurant when a new order is placed
     const queryParams = [orderNum, userId, currentTime, totalCost, orderItemsArray];
     newOrder(queryParams); // Creates a new order and stores it in the database
     res.send('Logged in.');

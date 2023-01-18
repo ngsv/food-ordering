@@ -77,9 +77,6 @@ const newOrder = (queryParams) => {
     `;
   return db
     .query(query, queryParams)
-    .then(data => {
-      console.log(data);
-    })
     .catch(err => console.log(err.message));
 };
 
@@ -125,7 +122,6 @@ const deleteOrder = (queryParams) => {
   `;
   return db
     .query(query, queryParams)
-    .then(data => console.log(data))
     .catch(err => console.log(err.message));
 };
 
@@ -138,7 +134,6 @@ const acceptOrder = (queryParams) => {
   `;
   return db
     .query(query, queryParams)
-    .then(data => console.log(data))
     .catch(err => console.log(err.message));
 };
 

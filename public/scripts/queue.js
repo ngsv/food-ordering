@@ -8,10 +8,8 @@ $(document).ready(function() {
       url: '/reload',
       method: 'GET',
     })
-      .done((results) => {
-        if (results) {
-          $('#current-orders').load(location.href + " #current-orders"); // Refresh Current Orders div
-        }
+      .done(() => {
+        $("#current-orders").load(location.href + " #current-orders"); // Refresh Current Orders div
       })
       .fail(err => console.log(err.message));
   };
@@ -70,7 +68,7 @@ $(document).ready(function() {
       orderNum: orderNum,
       prepTime: prepTime
     };
-
+    
     if (prepTime > 0) { // Ensures a prep time of at least 1 minute
       tableRows.remove(); // Remove the row from the New Orders div for the order that was accepted
 
@@ -80,10 +78,11 @@ $(document).ready(function() {
         method: 'POST',
         data: data
       })
-        .done((results) => {
-          if (results) {
-            $('#current-orders').load(location.href + " #current-orders"); // Refresh current orders div (move the accepted order down to the current order section)
-          }
+        .then(() => {
+          $("#current-orders").load(location.href + " #current-orders>");
+        })
+        .done(() => {
+          $("#current-orders").load(location.href + " #current-orders>"); // Refresh current orders div (move the accepted order down to the current order section)
         })
         .fail(err => console.log(err.message));
     } else {
@@ -97,7 +96,6 @@ $(document).ready(function() {
     let buttonClicked = event.target;
     let tableRow = buttonClicked.parentElement.parentElement;
     let orderDetail = tableRow.getElementsByClassName('order-details')[0];
-    console.log(tableRow);
     buttonClicked.classList.toggle('active'); // Toggles button class for animations
     orderDetail.classList.toggle('active'); // Toggles order details div for animations
   };
